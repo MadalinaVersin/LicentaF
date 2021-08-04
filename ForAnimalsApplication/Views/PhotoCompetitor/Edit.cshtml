@@ -1,0 +1,42 @@
+﻿@model ForAnimalsApplication.Models.PhotoCompetitor
+@{
+    ViewBag.Title = "Edit PhotoCompetitor";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Edit", "PhotoCompetitor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(a => a.PhotoCompetitorId)
+    <br />
+    <br />
+
+    @Html.Label("Name", "Name of the competition: ")
+    <br />
+    @Html.EditorFor(a => a.Name, new { htmlAttributes = new { @calss = "form-control" } })
+    @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    @Html.Label("Description", "Description: ")
+    <br />
+    @Html.TextAreaFor(a => a.Description, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(a => a.Description, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <div class="col-lg-12">
+        @Html.LabelFor(a => a.ImagePath, "Competitor's image:")
+        <br />
+        @Html.EditorFor(m => m.ImagePath)
+        <input type="file" name="ImageFile" />
+        <br />
+        @Html.ValidationMessageFor(a => a.ImagePath, "", new { @class = "text-danger" })
+        <br />
+        <br />
+        <br />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}
+

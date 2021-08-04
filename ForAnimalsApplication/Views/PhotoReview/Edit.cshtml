@@ -1,0 +1,28 @@
+﻿@model ForAnimalsApplication.Models.PhotoReview
+@{
+    ViewBag.Title = "Edit PhotoReview";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Edit", "PhotoReview", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(a => a.PhotoCompetitorId)
+    <br />
+    <br />
+    @Html.Label("Text", "Text: ")
+    <br />
+    @Html.TextAreaFor(a => a.Text, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(a => a.Text, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Note", "Animal's evaluation:")
+    <br />
+    @Html.DropDownListFor(c => c.Note, new SelectList(Model.NoteList, "Value", "Text"), "Choose a note", new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.Note, "", new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}
+

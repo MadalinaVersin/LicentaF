@@ -1,0 +1,69 @@
+﻿@model ForAnimalsApplication.Models.PhotoReview
+@{
+    ViewBag.Title = "Review details.";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Label("Text", "Your review:")
+<br />
+<div class="panel-body">
+
+    @Html.DisplayFor(b => b.Text)
+</div>
+
+<br />
+<br />
+<p>@Model.ApplicationUser.UserName</p>
+<br />
+<br />
+<p>@Model.ReviewDate</p>
+<br />
+<br />
+
+@Html.Label("Note", "Animal's evaluation:")
+<div class="col-md-2">
+    @{
+        switch (Model.Note)
+        {
+            case 0:
+                <text>
+                    <h5 style="margin: 20px;">☆☆☆☆☆ (@Model.Note)</h5>
+                </text>
+                break;
+            case 1:
+                <text>
+                    <h5 style="margin: 20px;">⭐☆☆☆☆ (@Model.Note)</h5>
+                </text>
+                break;
+            case 2:
+                <text>
+                    <h5 style="margin: 20px;">⭐⭐☆☆☆ (@Model.Note)</h5>
+                </text>
+                break;
+            case 3:
+                <text>
+                    <h5 style="margin: 20px;">⭐⭐⭐☆☆ (@Model.Note)</h5>
+                </text>
+                break;
+            case 4:
+                <text>
+                    <h5 style="margin: 20px;">⭐⭐⭐⭐☆ (@Model.Note)</h5>
+                </text>
+                break;
+            case 5:
+                <text>
+                    <h5 style="margin: 20px;">⭐⭐⭐⭐⭐ (@Model.Note)</h5>
+                </text>
+                break;
+        }
+    }
+</div>
+<br />
+<br />
+
+
+
+
+
+

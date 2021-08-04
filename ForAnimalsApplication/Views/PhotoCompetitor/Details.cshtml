@@ -1,0 +1,107 @@
+﻿@model ForAnimalsApplication.Models.PhotoCompetitor
+@{
+    ViewBag.Title = "Details VideoCompetitor";
+    var emptySummaryMsgVar = "This animal has no details";
+}
+
+<h2>@Model.Name</h2>
+<img src="@Url.Content(Model.ImagePath)" alt="Sample Image" width="250" height="250" />
+<br />
+
+@Html.Label("Descrition", "Description: ")
+<br />
+<div class="panel-body">
+    @if (Model.Description.IsEmpty())
+    {
+        <p>@emptySummaryMsgVar</p>
+
+    }
+    else
+    {
+        @Html.DisplayFor(b => b.Description)
+    }
+</div>
+@using (Html.BeginForm(actionName: "New", controllerName: "PhotoReview", method: FormMethod.Get, routeValues: new { id = Model.PhotoCompetitorId }))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">New Review</button>
+}
+@if (ViewBag.PhotoReviews != null)
+{
+    foreach (var review in ViewBag.PhotoReviews)
+    {
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @Html.Label("ReviewDate", "Review Date: ")
+                <br />
+                <p>@review.ReviewDate</p>
+                <br />
+                <p>Username: @review.ApplicationUser.UserName</p>
+                <br />
+                <div class="col-md-2">
+                    @{
+                        switch (review.Note)
+                        {
+                            case 0:
+                                <text>
+                                    <h5 style="margin: 20px;">☆☆☆☆☆ (@review.Note)</h5>
+                                </text>
+                                break;
+                            case 1:
+                                <text>
+                                    <h5 style="margin: 20px;">⭐☆☆☆☆ (@review.Note)</h5>
+                                </text>
+                                break;
+                            case 2:
+                                <text>
+                                    <h5 style="margin: 20px;">⭐⭐☆☆☆ (@review.Note)</h5>
+                                </text>
+                                break;
+                            case 3:
+                                <text>
+                                    <h5 style="margin: 20px;">⭐⭐⭐☆☆ (@review.Note)</h5>
+                                </text>
+                                break;
+                            case 4:
+                                <text>
+                                    <h5 style="margin: 20px;">⭐⭐⭐⭐☆ (@review.Note)</h5>
+                                </text>
+                                break;
+                            case 5:
+                                <text>
+                                    <h5 style="margin: 20px;">⭐⭐⭐⭐⭐ (@review.Note)</h5>
+                                </text>
+                                break;
+                        }
+                    }
+                </div>
+
+
+                @Html.Label("Text", "Text: ")
+                <br />
+                <p>@review.Text</p>
+                @using (Html.BeginForm(actionName: "Details", controllerName: "PhotoReview", method: FormMethod.Get, routeValues: new { id = review.PhotoReviewId }))
+                {
+                    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Details</button>
+                }
+                @using (Html.BeginForm(actionName: "Edit", controllerName: "PhotoReview", method: FormMethod.Get, routeValues: new { id = review.PhotoReviewId }))
+                {
+                    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Edit</button>
+                }
+                @using (Html.BeginForm(actionName: "Delete", controllerName: "PhotoReview", method: FormMethod.Post, routeValues: new { id = review.PhotoReviewId }))
+                {
+                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Delete</button>
+                }
+
+            </div>
+        </div>
+    }
+}
+
+
+<br />
+
+@using (Html.BeginForm(actionName: "Index", controllerName: "PhotoCompetitor", method: FormMethod.Get))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Back</button>
+}

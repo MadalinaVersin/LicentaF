@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "PhotoCompetitors";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (ViewBag.PhotoCompetitors != null)
+{
+    foreach (var competitor in ViewBag.PhotoCompetitors)
+    {
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @Html.Label("Name", "Name: ")
+                <br />
+                <p>@competitor.Name</p>
+                <br />
+                <p>Username: @competitor.ApplicationUser.UserName</p>
+                <br />
+                @Html.Label("ImagePath", "ImagePath: ")
+                <img src="@Url.Content(competitor.ImagePath)" alt="Sample Image" width="250" height="250" />
+                <br />
+
+                @Html.Label("Description", "Description: ")
+                <br />
+                <p>@competitor.Description</p>
+                @using (Html.BeginForm(actionName: "Details", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.PhotoCompetitorId }))
+                {
+                    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Details</button>
+                }
+                @using (Html.BeginForm(actionName: "Edit", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.PhotoCompetitorId }))
+                {
+                    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Edit</button>
+                }
+
+            </div>
+        </div>
+    }
+}
+
+
+<br />
+@Html.ActionLink("Add animal", "New")
+
+<br />
+<br />
+@using (Html.BeginForm(actionName: "Index", controllerName: "Home", method: FormMethod.Get))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Back</button>
+}

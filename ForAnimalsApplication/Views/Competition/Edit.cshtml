@@ -1,0 +1,61 @@
+﻿@model ForAnimalsApplication.Models.Competition
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Edit", "Competition", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(a => a.CompetitionId)
+    <br />
+    <br />
+
+    @Html.Label("Name", "Name of the competition: ")
+    <br />
+    @Html.EditorFor(a => a.CompetitionName, new { htmlAttributes = new { @calss = "form-control" } })
+    @Html.ValidationMessageFor(a => a.CompetitionName, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    @Html.Label("StartDate", "Start Date: ")
+    <br />
+    <input if="stratDate" type="datetime-local" name="StartDate" />
+    @Html.ValidationMessageFor(a => a.StartDate, "", new { @class = " text-danger" })
+    <br />
+    <br />
+    @Html.Label("EnadDate", "End Date: ")
+    <br />
+    <br />
+    <input if="stratDate" type="datetime-local" name="EndDate" />
+    @Html.ValidationMessageFor(a => a.EndDate, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    @Html.Label("Description", "Description: ")
+    <br />
+    @Html.TextAreaFor(a => a.Description, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(a => a.Description, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    @Html.Label("CompetitionType", "CompetitionType: ")
+    <br />
+    @Html.DropDownListFor(a => a.CompetitionTypeId, new SelectList(Model.CompetitionTypeList, "Value", "Text"), "Choose a competition type", new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.CompetitionTypeId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <div class="col-lg-12">
+        @Html.LabelFor(a => a.ImagePath, "Competition's image:")
+        <br />
+        @Html.EditorFor(m => m.ImagePath)
+        <input type="file" name="ImageFile" />
+        <br />
+        @Html.ValidationMessageFor(a => a.ImagePath, "", new { @class = "text-danger" })
+        <br />
+        <br />
+        <br />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}
+

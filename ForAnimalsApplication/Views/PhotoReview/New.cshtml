@@ -1,0 +1,31 @@
+﻿@model ForAnimalsApplication.Models.PhotoReview
+@{
+    ViewBag.Title = "Create a review.";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "PhotoReview", method: FormMethod.Post))
+{
+    @Html.HiddenFor(a => a.PhotoReviewId)
+    @Html.HiddenFor(a => a.PhotoCompetitorId)
+
+    @Html.Label("Text", "Your review:")
+    <br />
+    @Html.TextArea("Text", null, new { placeholder = "Type in the book's review", @class = "form-control", @rows = "10" })
+    @Html.ValidationMessageFor(b => b.Text, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Note", "Animal's evaluation:")
+    <br />
+    @Html.DropDownListFor(c => c.Note, new SelectList(Model.NoteList, "Value", "Text"), "Choose a note", new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.Note, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-primary col-lg-1" type="submit" style="margin-left: 90px">Add</button>
+
+
+}
+

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Competition Types";
+}
+
+<h2>@ViewBag.Title</h2>
+<table class="table">
+    <thead>
+        <th>Name</th>
+    </thead>
+    <tbody>
+        @foreach (var competitionType in ViewBag.competitionTypes)
+        {
+            <tr>
+                <td>@competitionType.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+
+@using (Html.BeginForm(actionName: "New", controllerName: "CompetitionType", method: FormMethod.Get))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Tip nou</button>
+}
+
+@using (Html.BeginForm(actionName: "Index", controllerName: "Home", method: FormMethod.Get))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Inapoi</button>
+}
+
+

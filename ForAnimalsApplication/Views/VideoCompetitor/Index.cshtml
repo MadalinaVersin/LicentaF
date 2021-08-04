@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "VideoCompetitors";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (ViewBag.VideoCompetitors != null)
+{
+    foreach (var competitor in ViewBag.VideoCompetitors)
+    {
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @Html.Label("Name", "Name: ")
+                <br />
+                <p>@competitor.Name</p>
+                <br />
+                <p>Username: @competitor.ApplicationUser.UserName</p>
+                <br />
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="title">@competitor.Vname</div>
+                    <div class="video-frame">
+                        <video style="width:100%; height:auto;" controls>
+                            <source src="@Url.Content(@competitor.Vpath)" type="video/mp4" />
+                        </video>
+                    </div>
+                </div>
+                @Html.Label("Description", "Description: ")
+                <br />
+                <p>@competitor.Description</p>
+                @using (Html.BeginForm(actionName: "Details", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.CompetitorId }))
+                {
+                    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Details</button>
+                }
+                @using (Html.BeginForm(actionName: "Edit", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.CompetitorId }))
+                {
+                    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Edit</button>
+                }
+
+            </div>
+        </div>
+    }
+}
+
+
+<br />
+@Html.ActionLink("Add animal", "New")
+
+<br />
+<br />
+@using (Html.BeginForm(actionName: "Index", controllerName: "Home", method: FormMethod.Get))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Back</button>
+}

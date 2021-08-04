@@ -1,0 +1,49 @@
+﻿@model ForAnimalsApplication.Models.VideoCompetitor
+@{
+    ViewBag.Title = "New PhotoCompetitor";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("New", "VideoCompetitor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(a => a.CompetitionId)
+    @Html.HiddenFor(a => a.VideoCompetitorId)
+
+    @Html.Label("Name", "AnimalName: ")
+    <br />
+    @Html.TextBoxFor(a => a.Name, null, new
+    {
+        placeholder = "Type in the animal's name",
+        @class = "form-control"
+    })
+
+    @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Description", "Description: ")
+    <br />
+    @Html.TextArea("Description", null, new
+    {
+        placeholder = "Type in the competitor's description",
+        @class = "form-control",
+        @rows = "10"
+    })
+
+    @Html.ValidationMessageFor(a => a.Description, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <div class="form-group">
+        <label> Upload Video files: </label>
+        <div class="input-group">
+            @Html.TextBox("VideoFile", "", new { type = "file" }) <br />
+            <input type="submit" value="Upload Video File" />
+        </div>
+    </div>
+    <br />
+
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}
+
+

@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Competitii";
+}
+
+<h2 align="center">@ViewBag.Title</h2>
+<img src="~/Content/Image/bck1.jpg" />
+@using (Html.BeginForm(actionName: "New", controllerName: "Competition", method: FormMethod.Get))
+{
+    <button style="margin-right:5px" class="button2" type="submit">
+        Competitie Noua
+        <img class="plusImg1" src="~/Content/Image/icon-plus.png" />
+    </button>
+}
+<div style="margin-top:20px; position: relative;"></div>
+<br />
+@if (ViewBag.Competitions != null)
+{
+    foreach (var competition in ViewBag.Competitions)
+    {
+        <div class="panel panel-default">
+            <div class="panel-body" style="align-content:center">
+                <div style="background-image: url('@Url.Content(competition.ImagePath)'); background-repeat: no-repeat; background-size: cover; background-position:center; position:relative;">
+                    <div class="antetcompetition">
+                        <p>Data incepere: </p>
+                    </div>
+                    <br />
+                    <p style="font-size:24px;">@competition.CompetitionName</p>
+                    <br />
+                    @Html.Label("StartDate", "Start Date: ")
+                    <p>@competition.StartDate</p>
+                    <br />
+                    @Html.Label("EndDate", "End Date: ")
+                    <p>@competition.EndDate</p>
+                    <br />
+                    @Html.Label("Description", "Description: ")
+                    <p>@competition.Description</p>
+                    <br />
+                    @Html.Label("ImagePath", "Image: ")
+                    <img src="@Url.Content(competition.ImagePath)" alt="Sample Image" width="250" height="250" />
+                    <br />
+
+                    @Html.Label("CompetionType", "Competion Type : ")
+                    <br />
+                    <p>@competition.CompetitionType.Name</p>
+                    <br />
+
+                    @using (Html.BeginForm(actionName: "Edit", controllerName: "Competition", method: FormMethod.Get, routeValues: new { id = competition.CompetitionId }))
+                    {
+                        <button style="margin-right: 5px" class="btn btn-primary col-lg-1" type="submit"> Update</button>
+                    }
+                    @using (Html.BeginForm(actionName: "Details", controllerName: "Competition", method: FormMethod.Get, routeValues: new { id = competition.CompetitionId }))
+                    {
+                        <button style="margin-right: 5px" class="btn btn-primary col-lg-1" type="submit"> Details</button>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<br />
+@using (Html.BeginForm(actionName: "Index", controllerName: "Home", method: FormMethod.Get))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Back</button>
+}
+

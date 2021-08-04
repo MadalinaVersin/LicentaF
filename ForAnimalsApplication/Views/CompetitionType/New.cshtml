@@ -1,0 +1,17 @@
+﻿@model ForAnimalsApplication.Models.CompetitionType
+@{
+    ViewBag.Title = "Create a competion type";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "CompetitionType", method: FormMethod.Post))
+{
+    @Html.LabelFor(c => c.Name, "Competitions type name: ")
+    <br />
+    @Html.TextBoxFor(c => c.Name, null, new { placeholder = "Type in the type's name", @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-primary" type="submit">Create</button>
+}
