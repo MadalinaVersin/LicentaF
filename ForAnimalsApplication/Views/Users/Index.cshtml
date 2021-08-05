@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "User Role Management";
+}
+@Html.Partial("_TopMenuPartial")
+<h3 class="text-center">User Role Management</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            @if (ViewBag.UsersList.Count == 0)
+            {
+                <p>No users</p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead class="p-3 mb-2 bg-info text-white">
+                        <tr>
+                            <th>UserName</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var u in ViewBag.UsersList)
+                        {
+                            <tr>
+                                <td>@u.UserName</td>
+                                <td>
+                                    @using (Html.BeginForm(actionName: "Details", controllerName: "Users", method: FormMethod.Get, routeValues: new { id = u.Id }))
+                                    {
+                                        <button style="margin-right: 5px" class="btn btn-primary " type="submit">Deatils</button>
+                                    }
+                                    @using (Html.BeginForm(actionName: "Edit", controllerName: "Users", method: FormMethod.Get, routeValues: new { id = u.Id }))
+                                    {
+                                        <button style="margin-right: 5px" class="btn btn-primary " type="submit">Edit</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+

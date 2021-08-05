@@ -28,11 +28,11 @@
                 @Html.Label("Description", "Description: ")
                 <br />
                 <p>@competitor.Description</p>
-                @using (Html.BeginForm(actionName: "Details", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.CompetitorId }))
+                @using (Html.BeginForm(actionName: "Details", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.VideoCompetitorId }))
                 {
                     <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Details</button>
                 }
-                @using (Html.BeginForm(actionName: "Edit", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.CompetitorId }))
+                @using (Html.BeginForm(actionName: "Edit", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.VideoCompetitorId }))
                 {
                     <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Edit</button>
                 }

@@ -110,3 +110,5 @@ C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsAppli
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.csproj.GenerateResource.cache
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedCompetitionType.resources
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.Addedallmodels.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedfieldsinApplicationUser.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedAddresstoApplicationUser.resources

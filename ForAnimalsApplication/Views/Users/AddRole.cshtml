@@ -1,0 +1,18 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    ViewBag.Title = "AddRole";
+}
+@Html.Partial("_TopMenuPartial")
+<h2>AddRole</h2>
+
+@using (Html.BeginForm(actionName: "AddRole", controllerName: "Users", method: FormMethod.Post))
+{
+    @Html.LabelFor(r => r.Name, "Role Name: ")
+    <br />
+    @Html.TextBoxFor(r => r.Name, null, new { placeholder = "Type in the role's name", @class = "form-control" })
+    @Html.ValidationMessageFor(r => r.Name, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-primary" type="submit">Create</button>
+}
+

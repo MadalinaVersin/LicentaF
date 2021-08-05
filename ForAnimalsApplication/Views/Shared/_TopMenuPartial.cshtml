@@ -1,0 +1,25 @@
+﻿<br/>
+<div class="row">
+    <center>
+       
+        <div style="width:60%">
+            @using (Html.BeginForm(actionName: "AddRole", controllerName: "Users", method: FormMethod.Get))
+            {
+                <button style="margin-right:5px" class="btn btn-primary col-lg-2" type="submit">Adauga Rol</button>
+            }
+            @using (Html.BeginForm(actionName: "AddUserToRole", controllerName: "Users", method: FormMethod.Get))
+            {
+                <button style="margin-right:5px" class="btn btn-primary col-lg-4" type="submit">Adauga Rol la Utilizator</button>
+            }
+            @using (Html.BeginForm(actionName: "DisplayRoles", controllerName: "Users", method: FormMethod.Get))
+            {
+                <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Roluri</button>
+            }
+            @using (Html.BeginForm(actionName: "Index", controllerName: "Users", method: FormMethod.Get))
+            {
+                <button style="margin-right:5px" class="btn btn-primary col-lg-2" type="submit">Utilizatori</button>
+            }
+        </div>
+    </center>
+</div>
+

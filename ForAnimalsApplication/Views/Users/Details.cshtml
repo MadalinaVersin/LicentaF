@@ -1,0 +1,32 @@
+﻿@model ForAnimalsApplication.Models.ApplicationUser
+@{
+    ViewBag.Title = "Details";
+}
+@Html.Partial("_TopMenuPartial")
+<h3 class="text-center">User: <b>@Model.UserName</b></h3>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+
+            @Html.LabelFor(u => u.Email, "Email:")
+            <br />
+            @Html.DisplayFor(u => u.Email)
+            <br />
+            <br />
+            @Html.LabelFor(u => u.UserName, "Username:")
+            <br />
+            @Html.DisplayFor(u => u.UserName)
+            <br />
+            <br />
+            <label>Role:</label>
+            <p>@ViewBag.UserRole</p>
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "Users", method: FormMethod.Get, routeValues: new { id = Model.Id }))
+            {
+                <button style="margin-right: 5px" class="btn btn-primary " type="submit">Deatils</button>
+            }
+        </div>
+    </div>
+</div>
+

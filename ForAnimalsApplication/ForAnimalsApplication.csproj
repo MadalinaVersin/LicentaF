@@ -174,6 +174,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PhotoCompetitorController.cs" />
     <Compile Include="Controllers\PhotoReviewController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VideoCompetitorController.cs" />
     <Compile Include="Controllers\VideoReviewController.cs" />
     <Compile Include="Global.asax.cs">
@@ -190,6 +191,14 @@
     <Compile Include="Migrations\202108031907135_Added all models.cs" />
     <Compile Include="Migrations\202108031907135_Added all models.Designer.cs">
       <DependentUpon>202108031907135_Added all models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108041921503_Added fields in ApplicationUser.cs" />
+    <Compile Include="Migrations\202108041921503_Added fields in ApplicationUser.Designer.cs">
+      <DependentUpon>202108041921503_Added fields in ApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108041953246_Added Address to ApplicationUser.cs" />
+    <Compile Include="Migrations\202108041953246_Added Address to ApplicationUser.Designer.cs">
+      <DependentUpon>202108041953246_Added Address to ApplicationUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -210,9 +219,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Image\504-5044750_male-user-icon-ancient-asian-peace-symbol.png" />
     <Content Include="Content\Image\bck1.jpg" />
     <Content Include="Content\Image\bck2.jpg" />
     <Content Include="Content\Image\icon-plus.png" />
+    <Content Include="Content\Image\user-1648810-1401302.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -286,6 +297,12 @@
     <Content Include="Views\VideoReview\Edit.cshtml" />
     <Content Include="Views\VideoCompetitor\Edit.cshtml" />
     <Content Include="Views\VideoCompetitor\Details.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\DisplayRoles.cshtml" />
+    <Content Include="Views\Users\AddRole.cshtml" />
+    <Content Include="Views\Users\AddUserToRole.cshtml" />
+    <Content Include="Views\Shared\_TopMenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -314,6 +331,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108031907135_Added all models.resx">
       <DependentUpon>202108031907135_Added all models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108041921503_Added fields in ApplicationUser.resx">
+      <DependentUpon>202108041921503_Added fields in ApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108041953246_Added Address to ApplicationUser.resx">
+      <DependentUpon>202108041953246_Added Address to ApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
