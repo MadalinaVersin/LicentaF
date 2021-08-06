@@ -26,6 +26,7 @@ namespace ForAnimalsApplication.Controllers
             if (id.HasValue)
             {
                 VideoCompetitor competitor = new VideoCompetitor();
+                competitor.AgeList = GetAllAges();
                 competitor.CompetitionId = (int)id;
                 return View(competitor);
             }
@@ -148,6 +149,21 @@ namespace ForAnimalsApplication.Controllers
                 return HttpNotFound("Couldn't find the animal with id " + id.ToString() + "!");
             }
             return HttpNotFound("Missing animal id parameter!");
+        }
+
+        public IEnumerable<SelectListItem> GetAllAges()
+        {
+            var selectList = new List<SelectListItem>();
+
+            for (var i = 0; i < 20; i++)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = i.ToString() +"-" +(i+1).ToString()+ " ani",
+                    Text = i.ToString() + "-" + (i + 1).ToString()+" ani"
+                });
+            }
+            return selectList;
         }
 
     }

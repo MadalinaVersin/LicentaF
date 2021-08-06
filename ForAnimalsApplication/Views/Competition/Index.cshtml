@@ -12,6 +12,12 @@
         <img class="plusImg1" src="~/Content/Image/icon-plus.png" />
     </button>
 }
+@using (Html.BeginForm(actionName: "AboutAllCompetitions", controllerName: "Statistics", method: FormMethod.Get))
+{
+    <button style="align-items:center" class="button" type="submit">
+        Statistici competitii
+    </button>
+}
 <div style="margin-top:20px; position: relative;"></div>
 <br />
 @if (ViewBag.Competitions != null)

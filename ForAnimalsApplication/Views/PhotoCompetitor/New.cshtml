@@ -21,6 +21,23 @@
 
     @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
     <br />
+    @Html.Label("MicrochipNumber", "Numar Microcip: ")
+    <br />
+    @Html.TextBoxFor(a => a.MicrochipNumber, null, new
+    {
+        placeholder = "Type in the microcip's name",
+        @class = "form-control"
+    })
+
+    @Html.ValidationMessageFor(a => a.MicrochipNumber, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Age", "Varsta animal :")
+    <br />
+    @Html.DropDownListFor(a => a.Age, new SelectList(Model.AgeList, "Value", "Text"), "Alege varsta", new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.Age, "", new { @class = "text-danger" })
+    <br />
+
+
     @Html.Label("Description", "Description: ")
     <br />
     @Html.TextArea("Description", null, new

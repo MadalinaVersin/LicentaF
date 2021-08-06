@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ForAnimalsApplication.Models
 {
@@ -12,9 +13,16 @@ namespace ForAnimalsApplication.Models
         [Key]
         public int VideoCompetitorId { get; set; }
 
+        public string MicrochipNumber { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
+        public bool Winner { get; set; }
+        public string Age { get; set; }
+
+        [NotMapped]
+        public IEnumerable<SelectListItem> AgeList { get; set; }
 
         //Jury note
         public int JuryNote { get; set; }

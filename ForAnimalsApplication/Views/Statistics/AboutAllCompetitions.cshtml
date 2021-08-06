@@ -1,0 +1,118 @@
+﻿<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawChart1);
+
+        function drawChart() {
+            $(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Statistics/GetAboutAllCompetitions',
+                    data: '{}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (chartsdata) {
+
+                        var data = google.visualization.arrayToDataTable(chartsdata
+                        );
+
+                        var options = {
+                            title: 'Participanti per competitie'
+                        };
+
+                        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                        chart.draw(data, options);
+                    },
+                    error: function () {
+                        alert("Error loading data! Please try again.");
+                    }
+                });
+            });
+        }
+        function drawChart1() {
+            $(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Statistics/GetCompetitionType',
+                    data: '{}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (chartsdata) {
+
+                        var data = google.visualization.arrayToDataTable(chartsdata
+                        );
+
+                        var options = {
+                            title: 'Competitii per tip'
+                        };
+
+                        var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+                        chart.draw(data, options);
+                    },
+                    error: function () {
+                        alert("Error loading data! Please try again.");
+                    }
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1 class="text-center"> Statistici despre competitii</h1>
+    <br />
+    <div cls="row">
+        <div class="col-md-6">
+            <div id="piechart" style="width: 550px; height: 400px;"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="piechart1" style="width: 550px; height: 400px;"></div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <h3 class="text-center">Competitii active</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @if (ViewBag.Competitions.Count == 0)
+                    {
+                        <p>Nu sunt competitii active!</p>
+                    }
+                    else
+                    {
+                        <table class="table">
+                            <thead class="p-3 mb-2 bg-info text-white">
+                                <tr>
+                                    <th>Nume Competitie</th>
+                                    <th>Tip Competitie</th>
+                                    <th>Data start</th>
+                                    <th>Data sfarsit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var c in ViewBag.Competitions)
+                                {
+                                    if (c.EndDate >= DateTime.Now)
+                                    {
+                                    <tr>
+                                        <td>@c.CompetitionName</td>
+                                        <td>@c.CompetitionType.Name</td>
+                                        <td>@c.StartDate</td>
+                                        <td>@c.EndDate</td>
+                                    </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -112,3 +112,6 @@ C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsAppli
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.Addedallmodels.resources
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedfieldsinApplicationUser.resources
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedAddresstoApplicationUser.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedfieldsinVideoCompetitor.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.changeAgefield.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedfieldsinPhotoCompetition.resources
