@@ -56,6 +56,9 @@ namespace ForAnimalsApplication.Controllers
                     return RedirectToAction("Details", "Competition", new { id = competitorReq.CompetitionId });
 
                 }
+                competitorReq.AgeList = GetAllAges();
+                competitorReq.GenderList = GetAllGenders();
+                
                 return View(competitorReq);
             }
             catch (Exception e)
@@ -137,12 +140,27 @@ namespace ForAnimalsApplication.Controllers
                 PhotoCompetitor competitor = db.PhotoCompetitors.Find(id);
                 if (competitor != null)
                 {
+                    //ViewBag.NewReview = IsUserReview((int)id, User.Identity.GetUserId());
                     ViewBag.PhotoReviews = db.PhotoReviews.Include("ApplicationUser").Where(u => u.PhotoCompetitorId == id);
                     return View(competitor);
                 }
                 return HttpNotFound("Couldn't find the animal with id " + id.ToString() + "!");
             }
             return HttpNotFound("Missing animal id parameter!");
+        }
+
+        public Boolean IsUserReview(int competitorId, string userId)
+        {
+            var userReview = db.PhotoReviews.ToList().Where(u => u.PhotoCompetitorId == competitorId && u.ApplicationUserID == userId);
+            if(userReview.Count() == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         public IEnumerable<SelectListItem> GetAllAges()

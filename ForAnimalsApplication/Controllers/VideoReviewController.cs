@@ -46,6 +46,7 @@ namespace ForAnimalsApplication.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Details", "VideoCompetitor", new { id = competitor.VideoCompetitorId });
                 }
+                
                 return View(reviewReq);
             }
             catch (Exception e)

@@ -43,6 +43,8 @@ namespace ForAnimalsApplication.Controllers
 
                     PhotoCompetitor competitor = db.PhotoCompetitors.Find(reviewReq.PhotoCompetitorId);
                     competitor.FinalNote = CalculateFinalNote(reviewReq.PhotoCompetitorId);
+                    competitor.AgeList = GetAllAges();
+                    competitor.GenderList = GetAllGenders();
                     db.SaveChanges();
                     return RedirectToAction("Details", "PhotoCompetitor", new { id = reviewReq.PhotoCompetitorId });
                 }
@@ -172,6 +174,38 @@ namespace ForAnimalsApplication.Controllers
             return sum;
 
 
+        }
+
+        public IEnumerable<SelectListItem> GetAllAges()
+        {
+            var selectList = new List<SelectListItem>();
+
+            for (var i = 0; i < 20; i++)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = i.ToString() + "-" + (i + 1).ToString() + " ani",
+                    Text = i.ToString() + "-" + (i + 1).ToString() + " ani"
+                });
+            }
+            return selectList;
+        }
+
+        public IEnumerable<SelectListItem> GetAllGenders()
+        {
+            var selectList = new List<SelectListItem>();
+            selectList.Add(new SelectListItem
+            {
+                Value = "Femela",
+                Text = "Femela"
+            });
+
+            selectList.Add(new SelectListItem
+            {
+                Value = "Mascul",
+                Text = "Mascul"
+            });
+            return selectList;
         }
     }
 }

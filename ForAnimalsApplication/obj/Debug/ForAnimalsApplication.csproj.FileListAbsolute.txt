@@ -117,3 +117,4 @@ C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsAppli
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedfieldsinPhotoCompetition.resources
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedGenderinPhotoCompetitor.resources
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedgenderinVideoCompetitor.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.Addedtestrequired.resources

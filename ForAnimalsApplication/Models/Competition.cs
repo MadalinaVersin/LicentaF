@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ForAnimalsApplication.Models.MyValidation;
 
 namespace ForAnimalsApplication.Models
 {
@@ -15,6 +16,7 @@ namespace ForAnimalsApplication.Models
         public int CompetitionId { get; set; }
         public string CompetitionName { get; set; }
         public DateTime StartDate { get; set; }
+        [EndDateValidator]
         public DateTime EndDate { get; set; }
         public string Description { get; set; }
 

@@ -61,6 +61,8 @@ namespace ForAnimalsApplication.Controllers
                     return RedirectToAction("Details", "Competition", new { id = competitorReq.CompetitionId });
 
                 }
+                competitorReq.AgeList = GetAllAges();
+                competitorReq.GenderList = GetAllGenders();
                 return View(competitorReq);
             }
             catch (Exception e)

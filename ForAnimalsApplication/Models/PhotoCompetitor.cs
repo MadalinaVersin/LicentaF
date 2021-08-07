@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using ForAnimalsApplication.Models.MyValidation;
 namespace ForAnimalsApplication.Models
 {
     public class PhotoCompetitor
@@ -13,7 +13,9 @@ namespace ForAnimalsApplication.Models
         [Key]
         public int PhotoCompetitorId { get; set; }
 
+        [MicrochipPhotoValidator]
         public string MicrochipNumber { get; set; }
+        [Required]
         public string Name { get; set; }
 
         public string Description { get; set; }
