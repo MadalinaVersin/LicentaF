@@ -27,6 +27,7 @@ namespace ForAnimalsApplication.Controllers
             {
                 VideoCompetitor competitor = new VideoCompetitor();
                 competitor.AgeList = GetAllAges();
+                competitor.GenderList = GetAllGenders();
                 competitor.CompetitionId = (int)id;
                 return View(competitor);
             }
@@ -163,6 +164,23 @@ namespace ForAnimalsApplication.Controllers
                     Text = i.ToString() + "-" + (i + 1).ToString()+" ani"
                 });
             }
+            return selectList;
+        }
+
+        public IEnumerable<SelectListItem> GetAllGenders()
+        {
+            var selectList = new List<SelectListItem>();
+            selectList.Add(new SelectListItem
+            {
+                Value = "Femela",
+                Text = "Femela"
+            });
+
+            selectList.Add(new SelectListItem
+            {
+                Value = "Mascul",
+                Text = "Mascul"
+            });
             return selectList;
         }
 

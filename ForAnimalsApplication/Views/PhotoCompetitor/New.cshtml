@@ -37,6 +37,11 @@
     @Html.ValidationMessageFor(a => a.Age, "", new { @class = "text-danger" })
     <br />
 
+    @Html.Label("Gender", "Gen animal :")
+    <br />
+    @Html.DropDownListFor(a => a.Gender, new SelectList(Model.GenderList, "Value", "Text"), "Alege varsta", new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.Gender, "", new { @class = "text-danger" })
+    <br />
 
     @Html.Label("Description", "Description: ")
     <br />

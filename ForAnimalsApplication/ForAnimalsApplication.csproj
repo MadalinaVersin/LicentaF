@@ -213,6 +213,14 @@
     <Compile Include="Migrations\202108062043448_Added fields in PhotoCompetition.Designer.cs">
       <DependentUpon>202108062043448_Added fields in PhotoCompetition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108071525236_Added Gender in PhotoCompetitor.cs" />
+    <Compile Include="Migrations\202108071525236_Added Gender in PhotoCompetitor.Designer.cs">
+      <DependentUpon>202108071525236_Added Gender in PhotoCompetitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108071531083_Added gender in VideoCompetitor.cs" />
+    <Compile Include="Migrations\202108071531083_Added gender in VideoCompetitor.Designer.cs">
+      <DependentUpon>202108071531083_Added gender in VideoCompetitor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Competition.cs" />
@@ -364,6 +372,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108062043448_Added fields in PhotoCompetition.resx">
       <DependentUpon>202108062043448_Added fields in PhotoCompetition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108071525236_Added Gender in PhotoCompetitor.resx">
+      <DependentUpon>202108071525236_Added Gender in PhotoCompetitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108071531083_Added gender in VideoCompetitor.resx">
+      <DependentUpon>202108071531083_Added gender in VideoCompetitor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

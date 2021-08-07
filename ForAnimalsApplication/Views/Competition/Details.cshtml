@@ -44,12 +44,17 @@ else
             <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">New VideoCompetitor</button>
         }
     }
+}
 
-    using (Html.BeginForm(actionName: "Index", controllerName: "Animal", method: FormMethod.Get))
+@using (Html.BeginForm(actionName: "AboutOneCompetition", controllerName: "Statistics", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
+{
+        <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Statistici</button>
+    }
+@using (Html.BeginForm(actionName: "Index", controllerName: "Animal", method: FormMethod.Get))
     {
         <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Back</button>
     }
-}
+
 
 @if (Model.CompetitionType.Name == "Photo")
 {

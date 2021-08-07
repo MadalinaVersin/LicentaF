@@ -155,6 +155,7 @@ namespace ForAnimalsApplication.Controllers
 
         public ActionResult AboutOneCompetition(int id)
         {
+            ViewBag.CompetitionId = id;
             return View();
         }
 
@@ -162,6 +163,38 @@ namespace ForAnimalsApplication.Controllers
         {
             List<object> chartData = new List<object>();
             chartData.Add(new object[] { "Varsta", "Numar concurenti cu aceasta varsta" });
+            string age="";
+            for(var i = 0; i < 20; i++)
+            {
+                age = i.ToString();
+                age = age + "-";
+                age = age + (i + 1).ToString();
+                age = age + " ani";
+                var photoCompetitors = db.PhotoCompetitors.ToList().Where(u => u.CompetitionId==id && u.Age == age);
+                var videoComptetitors = db.VideoCompetitors.ToList().Where(u => u.CompetitionId == id && u.Age == age);
+                int number = photoCompetitors.Count() + videoComptetitors.Count();
+                chartData.Add(new object[] { age, number});
+
+            }
+            return Json(chartData, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetGender(int id)
+        {
+            List<object> chartData = new List<object>();
+            chartData.Add(new object[] { "Gen", "Numar animale" });
+
+            var photoCompetitorsF = db.PhotoCompetitors.ToList().Where(u => u.CompetitionId == id && u.Gender == "Femela");
+            var videoComptetitorsF = db.VideoCompetitors.ToList().Where(u => u.CompetitionId == id && u.Gender == "Femela");
+            int numberF = photoCompetitorsF.Count() + videoComptetitorsF.Count();
+            chartData.Add(new object[] { "Femela", numberF });
+
+            var photoCompetitorsM = db.PhotoCompetitors.ToList().Where(u => u.CompetitionId == id && u.Gender == "Mascul");
+            var videoComptetitorsM = db.VideoCompetitors.ToList().Where(u => u.CompetitionId == id && u.Gender == "Mascul");
+            int numberM = photoCompetitorsM.Count() + videoComptetitorsM.Count();
+            chartData.Add(new object[] { "Mascul", numberM });
+
+
             return Json(chartData, JsonRequestBehavior.AllowGet);
         }
 

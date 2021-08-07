@@ -34,8 +34,13 @@
     @Html.Label("Age", "Varsta animal :")
     <br />
     @Html.DropDownListFor(c => c.Age, new SelectList(Model.AgeList, "Value", "Text"), "Alege varsta", new { @class = "form-control" })
-    @Html.ValidationMessageFor(c => c.Age,"", new { @class = "text-danger" })
+    @Html.ValidationMessageFor(c => c.Age, "", new { @class = "text-danger" })
     <br />
+    
+    @Html.Label("Gender", "Gen animal :")
+    <br />
+    @Html.DropDownListFor(c => c.Gender, new SelectList(Model.GenderList, "Value", "Text"), "Alege genul", new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.Gender, "", new { @class = "text-danger" })
     <br />
 
     @Html.Label("Description", "Description: ")

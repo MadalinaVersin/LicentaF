@@ -24,6 +24,11 @@ namespace ForAnimalsApplication.Models
         [NotMapped]
         public IEnumerable<SelectListItem> AgeList { get; set; }
 
+        public string Gender { get; set; }
+
+        [NotMapped]
+        public IEnumerable<SelectListItem> GenderList { get; set; }
+
         //Jury note
         public int JuryNote { get; set; }
 
