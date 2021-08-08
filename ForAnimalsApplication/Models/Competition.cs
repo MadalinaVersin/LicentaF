@@ -28,6 +28,7 @@ namespace ForAnimalsApplication.Models
 
 
         //many-to-one relationship
+        [Required(ErrorMessage ="Acest camp este obligatoriu!")]
         public int CompetitionTypeId { get; set; }
         public virtual CompetitionType CompetitionType { get; set; }
 
@@ -35,7 +36,7 @@ namespace ForAnimalsApplication.Models
         public IEnumerable<SelectListItem> CompetitionTypeList { get; set; }
 
         //Image
-        [Required(ErrorMessage = "Acest camp este obligatoriu!")]
+        //[Required(ErrorMessage = "Acest camp este obligatoriu!")]
         public string ImagePath { get; set; }
 
         [NotMapped]

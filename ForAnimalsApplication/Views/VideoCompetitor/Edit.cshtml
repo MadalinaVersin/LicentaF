@@ -13,10 +13,27 @@
     <br />
     <br />
 
-    @Html.Label("Name", "Name of the competition: ")
+    @Html.Label("Name", "Nume competitor: ")
     <br />
     @Html.EditorFor(a => a.Name, new { htmlAttributes = new { @calss = "form-control" } })
     @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    @Html.Label("MicrochipNumber", "Numar microcip: ")
+    <br />
+    @Html.EditorFor(a => a.MicrochipNumber, new { htmlAttributes = new { @calss = "form-control" } })
+    @Html.ValidationMessageFor(a => a.MicrochipNumber, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Age", "Varsta animal :")
+    <br />
+    @Html.DropDownListFor(a => a.Age, new SelectList(Model.AgeList, "Value", "Text"), "Alege varsta", new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.Age, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Gender", "Gen animal :")
+    <br />
+    @Html.DropDownListFor(a => a.Gender, new SelectList(Model.GenderList, "Value", "Text"), "Alege varsta", new { @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.Gender, "", new { @class = "text-danger" })
     <br />
     <br />
     @Html.Label("Description", "Description: ")
@@ -28,7 +45,7 @@
     <div class="form-group">
         <label> Upload Video files: </label>
         <div class="input-group">
-            @Html.TextBox("videofile", "", new { type = "file" }) <br />
+            @Html.TextBox("videofile", "", new { type = "file"}) <br />
         </div>
     </div>
     <br />

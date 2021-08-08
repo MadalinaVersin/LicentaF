@@ -64,6 +64,8 @@ namespace ForAnimalsApplication.Controllers
             catch (Exception e)
             {
                 var msg = e.Message;
+                competitorReq.AgeList = GetAllAges();
+                competitorReq.GenderList = GetAllGenders();
                 return View(competitorReq);
             }
 
@@ -75,6 +77,9 @@ namespace ForAnimalsApplication.Controllers
             if (id.HasValue)
             {
                 PhotoCompetitor competitor = db.PhotoCompetitors.Find(id);
+                competitor.AgeList = GetAllAges();
+                competitor.GenderList = GetAllGenders();
+
                 if (competitor == null)
                 {
                     return HttpNotFound("Couldn't find the competitor with id " + id.ToString() + "!");
@@ -87,7 +92,8 @@ namespace ForAnimalsApplication.Controllers
         [HttpPut]
         public ActionResult Edit(int id, PhotoCompetitor competitorReq)
         {
-
+            competitorReq.AgeList = GetAllAges();
+            competitorReq.GenderList = GetAllGenders();
             // preluam competitorul  pe care vrem sa o modificam din baza de date
             PhotoCompetitor competitor = db.PhotoCompetitors.Find(id);
 
@@ -114,7 +120,10 @@ namespace ForAnimalsApplication.Controllers
                     if (TryUpdateModel(competitor))
                     {
                         competitor.Name = competitorReq.Name;
+                        competitor.MicrochipNumber = competitorReq.MicrochipNumber;
                         competitor.Description = competitorReq.Description;
+                        competitor.Age = competitorReq.Age;
+                        competitor.Gender = competitorReq.Gender;
                         competitor.ImagePath = competitorReq.ImagePath;
                         if (updateImg == 1)
                         {
@@ -144,9 +153,9 @@ namespace ForAnimalsApplication.Controllers
                     ViewBag.PhotoReviews = db.PhotoReviews.Include("ApplicationUser").Where(u => u.PhotoCompetitorId == id);
                     return View(competitor);
                 }
-                return HttpNotFound("Couldn't find the animal with id " + id.ToString() + "!");
+                return HttpNotFound("Couldn't find the competitor with id " + id.ToString() + "!");
             }
-            return HttpNotFound("Missing animal id parameter!");
+            return HttpNotFound("Missing competitor id parameter!");
         }
 
         public Boolean IsUserReview(int competitorId, string userId)

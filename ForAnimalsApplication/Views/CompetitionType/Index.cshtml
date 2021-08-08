@@ -1,12 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "Competition Types";
+    ViewBag.Title = "Tipuri de competitii";
 }
 
 <h2>@ViewBag.Title</h2>
 <table class="table">
     <thead>
-        <th>Name</th>
+        <th>Tip</th>
     </thead>
     <tbody>
         @foreach (var competitionType in ViewBag.competitionTypes)
@@ -19,10 +19,10 @@
 </table>
 <br />
 
-@using (Html.BeginForm(actionName: "New", controllerName: "CompetitionType", method: FormMethod.Get))
+@*@using (Html.BeginForm(actionName: "New", controllerName: "CompetitionType", method: FormMethod.Get))
 {
     <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Tip nou</button>
-}
+}*@
 
 @using (Html.BeginForm(actionName: "Index", controllerName: "Home", method: FormMethod.Get))
 {

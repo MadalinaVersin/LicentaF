@@ -119,3 +119,10 @@ C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsAppli
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedgenderinVideoCompetitor.resources
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.Addedtestrequired.resources
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedvalidationsinCompetition.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedrequiredatCompetitionTypeIdinCompetition.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.NotrequiredforCompetitionTypeandImagePath.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedvalidationinCompetitionType.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedrequiredinPhotoCompetitor.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedvalidationinVideoCompetitor.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedvalidationinPhotoReview.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedvalidationinVideoReview.resources

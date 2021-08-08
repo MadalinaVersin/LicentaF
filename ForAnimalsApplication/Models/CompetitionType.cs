@@ -10,6 +10,8 @@ namespace ForAnimalsApplication.Models
     {
         [Key]
         public int CompetitionTypeId { get; set; }
+
+        [Required(ErrorMessage ="Acest camp este obligatoriu!")]
         public string Name { get; set; }
 
 

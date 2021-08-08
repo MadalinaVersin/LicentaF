@@ -9,7 +9,7 @@
 {
     @Html.LabelFor(r => r.Name, "Role Name: ")
     <br />
-    @Html.TextBoxFor(r => r.Name, null, new { placeholder = "Type in the role's name", @class = "form-control" })
+    @Html.TextBoxFor(r => r.Name, null, new { placeholder = "Type in the role's name", @class = "form-control" , required="required", })
     @Html.ValidationMessageFor(r => r.Name, "", new { @class = "text-danger" })
     <br />
     <br />

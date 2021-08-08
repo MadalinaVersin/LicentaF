@@ -15,17 +15,20 @@ namespace ForAnimalsApplication.Models
 
         [MicrochipPhotoValidator]
         public string MicrochipNumber { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Acest camp este obligatoriu!")]
         public string Name { get; set; }
 
         public string Description { get; set; }
 
         public bool Winner { get; set; }
+
+        [Required(ErrorMessage = "Acest camp este obligatoriu!")]
         public string Age { get; set; }
 
         [NotMapped]
         public IEnumerable<SelectListItem> AgeList { get; set; }
 
+        [Required(ErrorMessage ="Acest camp este obligatoriu!")]
         public string Gender { get; set; }
 
         [NotMapped]

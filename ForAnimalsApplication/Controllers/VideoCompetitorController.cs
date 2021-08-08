@@ -79,6 +79,8 @@ namespace ForAnimalsApplication.Controllers
             if (id.HasValue)
             {
                 VideoCompetitor competitor = db.VideoCompetitors.Find(id);
+                competitor.AgeList = GetAllAges();
+                competitor.GenderList = GetAllGenders();
                 if (competitor == null)
                 {
                     return HttpNotFound("Couldn't find the competitor with id " + id.ToString() + "!");
@@ -91,7 +93,8 @@ namespace ForAnimalsApplication.Controllers
         [HttpPut]
         public ActionResult Edit(int id, VideoCompetitor competitorReq)
         {
-
+            competitorReq.AgeList = GetAllAges();
+            competitorReq.GenderList = GetAllGenders();
             // preluam competitorul  pe care vrem sa il modificam din baza de date
             VideoCompetitor competitor = db.VideoCompetitors.Find(id);
 
@@ -120,6 +123,9 @@ namespace ForAnimalsApplication.Controllers
                     if (TryUpdateModel(competitor))
                     {
                         competitor.Name = competitorReq.Name;
+                        competitor.MicrochipNumber = competitorReq.MicrochipNumber;
+                        competitor.Age = competitorReq.Age;
+                        competitor.Gender = competitorReq.Gender;
                         competitor.Description = competitorReq.Description;
                         competitor.Vpath = competitorReq.Vpath;
                         if (updateImg == 1)

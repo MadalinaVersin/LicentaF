@@ -17,10 +17,12 @@ namespace ForAnimalsApplication.Models
             [Key]
             public int PhotoReviewId { get; set; }
 
+            [Required(ErrorMessage ="Trebuie sa lasati si un comentariu!")]
             public string Text { get; set; }
 
             public DateTime ReviewDate { get; set; }
-
+            
+            [Required(ErrorMessage ="Acest camp este obligatoriu!")]
             public int Note { get; set; }
 
             [NotMapped]

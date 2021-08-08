@@ -1,6 +1,6 @@
 ﻿@model ForAnimalsApplication.Models.VideoCompetitor
 @{
-    ViewBag.Title = "New PhotoCompetitor";
+    ViewBag.Title = "New VideoCompetitor";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -58,8 +58,7 @@
     <div class="form-group">
         <label> Upload Video files: </label>
         <div class="input-group">
-            @Html.TextBox("VideoFile", "", new { type = "file" }) <br />
-            <input type="submit" value="Upload Video File" />
+            @Html.TextBox("VideoFile", "", new { type = "file", required = "required"}) <br />
         </div>
     </div>
     <br />

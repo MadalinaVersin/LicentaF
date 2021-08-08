@@ -229,6 +229,34 @@
     <Compile Include="Migrations\202108081842579_Added validations in Competition.Designer.cs">
       <DependentUpon>202108081842579_Added validations in Competition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108081851196_Added required at CompetitionTypeId in Competition.cs" />
+    <Compile Include="Migrations\202108081851196_Added required at CompetitionTypeId in Competition.Designer.cs">
+      <DependentUpon>202108081851196_Added required at CompetitionTypeId in Competition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108081859107_Not required for CompetitionType and ImagePath.cs" />
+    <Compile Include="Migrations\202108081859107_Not required for CompetitionType and ImagePath.Designer.cs">
+      <DependentUpon>202108081859107_Not required for CompetitionType and ImagePath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108081920025_Added validation in CompetitionType.cs" />
+    <Compile Include="Migrations\202108081920025_Added validation in CompetitionType.Designer.cs">
+      <DependentUpon>202108081920025_Added validation in CompetitionType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108082046061_Added required in PhotoCompetitor.cs" />
+    <Compile Include="Migrations\202108082046061_Added required in PhotoCompetitor.Designer.cs">
+      <DependentUpon>202108082046061_Added required in PhotoCompetitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108082203081_Added validation in VideoCompetitor.cs" />
+    <Compile Include="Migrations\202108082203081_Added validation in VideoCompetitor.Designer.cs">
+      <DependentUpon>202108082203081_Added validation in VideoCompetitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108082243317_Added validation in PhotoReview.cs" />
+    <Compile Include="Migrations\202108082243317_Added validation in PhotoReview.Designer.cs">
+      <DependentUpon>202108082243317_Added validation in PhotoReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108082256335_Added validation in VideoReview.cs" />
+    <Compile Include="Migrations\202108082256335_Added validation in VideoReview.Designer.cs">
+      <DependentUpon>202108082256335_Added validation in VideoReview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Competition.cs" />
@@ -395,6 +423,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108081842579_Added validations in Competition.resx">
       <DependentUpon>202108081842579_Added validations in Competition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108081851196_Added required at CompetitionTypeId in Competition.resx">
+      <DependentUpon>202108081851196_Added required at CompetitionTypeId in Competition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108081859107_Not required for CompetitionType and ImagePath.resx">
+      <DependentUpon>202108081859107_Not required for CompetitionType and ImagePath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108081920025_Added validation in CompetitionType.resx">
+      <DependentUpon>202108081920025_Added validation in CompetitionType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108082046061_Added required in PhotoCompetitor.resx">
+      <DependentUpon>202108082046061_Added required in PhotoCompetitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108082203081_Added validation in VideoCompetitor.resx">
+      <DependentUpon>202108082203081_Added validation in VideoCompetitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108082243317_Added validation in PhotoReview.resx">
+      <DependentUpon>202108082243317_Added validation in PhotoReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108082256335_Added validation in VideoReview.resx">
+      <DependentUpon>202108082256335_Added validation in VideoReview.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
