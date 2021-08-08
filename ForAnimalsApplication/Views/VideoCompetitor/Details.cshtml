@@ -32,9 +32,12 @@
     <p>@Model.MicrochipNumber</p>
 </div>
 <br />
-@using (Html.BeginForm(actionName: "New", controllerName: "VideoReview", method: FormMethod.Get, routeValues: new { id = Model.VideoCompetitorId }))
+@if (ViewBag.NewReview)
 {
-    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">New Review</button>
+    using (Html.BeginForm(actionName: "New", controllerName: "VideoReview", method: FormMethod.Get, routeValues: new { id = Model.VideoCompetitorId }))
+    {
+        <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">New Review</button>
+    }
 }
 @using (Html.BeginForm(actionName: "AboutCompetitor", controllerName: "Statistics", method: FormMethod.Get, routeValues: new { id = Model.MicrochipNumber }))
 {

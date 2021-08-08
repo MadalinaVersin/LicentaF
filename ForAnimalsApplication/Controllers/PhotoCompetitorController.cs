@@ -140,7 +140,7 @@ namespace ForAnimalsApplication.Controllers
                 PhotoCompetitor competitor = db.PhotoCompetitors.Find(id);
                 if (competitor != null)
                 {
-                    //ViewBag.NewReview = IsUserReview((int)id, User.Identity.GetUserId());
+                    ViewBag.NewReview = IsUserReview((int)id, User.Identity.GetUserId());
                     ViewBag.PhotoReviews = db.PhotoReviews.Include("ApplicationUser").Where(u => u.PhotoCompetitorId == id);
                     return View(competitor);
                 }

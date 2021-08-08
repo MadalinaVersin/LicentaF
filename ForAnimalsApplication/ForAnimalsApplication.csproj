@@ -225,6 +225,10 @@
     <Compile Include="Migrations\202108071839186_Added test required.Designer.cs">
       <DependentUpon>202108071839186_Added test required.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108081842579_Added validations in Competition.cs" />
+    <Compile Include="Migrations\202108081842579_Added validations in Competition.Designer.cs">
+      <DependentUpon>202108081842579_Added validations in Competition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Competition.cs" />
@@ -388,6 +392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108071839186_Added test required.resx">
       <DependentUpon>202108071839186_Added test required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108081842579_Added validations in Competition.resx">
+      <DependentUpon>202108081842579_Added validations in Competition.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

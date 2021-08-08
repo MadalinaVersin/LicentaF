@@ -146,12 +146,27 @@ namespace ForAnimalsApplication.Controllers
                 VideoCompetitor competitor = db.VideoCompetitors.Find(id);
                 if (competitor != null)
                 {
+                    ViewBag.NewReview = IsUserReview((int)id, User.Identity.GetUserId());
                     ViewBag.VideoReviews = db.VideoReviews.Include("ApplicationUser").Where(u => u.VideoCompetitorId == id);
                     return View(competitor);
                 }
                 return HttpNotFound("Couldn't find the animal with id " + id.ToString() + "!");
             }
             return HttpNotFound("Missing animal id parameter!");
+        }
+
+        public Boolean IsUserReview(int competitorId, string userId)
+        {
+            var userReview = db.VideoReviews.ToList().Where(u => u.VideoCompetitorId == competitorId && u.ApplicationUserID == userId);
+            if (userReview.Count() == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         public IEnumerable<SelectListItem> GetAllAges()

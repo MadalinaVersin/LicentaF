@@ -14,8 +14,14 @@ namespace ForAnimalsApplication.Models
     {
         [Key]
         public int CompetitionId { get; set; }
+        [MinLength(2, ErrorMessage = "Numele competitiei nu poate sa aiba mai putin de 2 caractere!"),
+         MaxLength(200, ErrorMessage = "Numele unei competitiei nu poate sa aiba mai mult de 200 de carcatere! ")]
+        [Required(ErrorMessage = "Acest camp este obligatoriu!")]
         public string CompetitionName { get; set; }
+        [Required(ErrorMessage ="Acest camp este obligatoriu!")]
         public DateTime StartDate { get; set; }
+
+        [Required(ErrorMessage ="Acest camp este obligatoriu!")]
         [EndDateValidator]
         public DateTime EndDate { get; set; }
         public string Description { get; set; }
@@ -29,7 +35,7 @@ namespace ForAnimalsApplication.Models
         public IEnumerable<SelectListItem> CompetitionTypeList { get; set; }
 
         //Image
-        [DisplayName("Competition's image!")]
+        [Required(ErrorMessage = "Acest camp este obligatoriu!")]
         public string ImagePath { get; set; }
 
         [NotMapped]
