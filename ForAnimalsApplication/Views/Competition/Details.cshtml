@@ -86,7 +86,11 @@ else
                 @using (Html.BeginForm(actionName: "Delete", controllerName: "PhotoCompetitor", method: FormMethod.Post, routeValues: new { id = competitor.PhotoCompetitorId }))
                 {
                     @Html.HttpMethodOverride(HttpVerbs.Delete)
-                    <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+                    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Delete</button>
+                }
+                @using (Html.BeginForm(actionName: "GiveJuryNote", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.PhotoCompetitorId }))
+                {
+                    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">NotaJuriu</button>
                 }
 
             </div>

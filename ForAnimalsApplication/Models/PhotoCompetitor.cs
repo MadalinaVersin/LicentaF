@@ -35,7 +35,7 @@ namespace ForAnimalsApplication.Models
         public IEnumerable<SelectListItem> GenderList { get; set; }
 
         //Jury note
-        public int JuryNote { get; set; }
+        public double JuryNote { get; set; }
 
         //FinalNote 
         public double FinalNote { get; set; }

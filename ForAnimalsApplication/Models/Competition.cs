@@ -25,7 +25,7 @@ namespace ForAnimalsApplication.Models
         [EndDateValidator]
         public DateTime EndDate { get; set; }
         public string Description { get; set; }
-
+        public bool Evaluated { get; set; }
 
         //many-to-one relationship
         [Required(ErrorMessage ="Acest camp este obligatoriu!")]

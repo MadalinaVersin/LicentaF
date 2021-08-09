@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CompetitionController.cs" />
     <Compile Include="Controllers\CompetitionTypeController.cs" />
+    <Compile Include="Controllers\EvaluationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PhotoCompetitorController.cs" />
@@ -256,6 +257,14 @@
     <Compile Include="Migrations\202108082256335_Added validation in VideoReview.cs" />
     <Compile Include="Migrations\202108082256335_Added validation in VideoReview.Designer.cs">
       <DependentUpon>202108082256335_Added validation in VideoReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108091351349_JuryNote double.cs" />
+    <Compile Include="Migrations\202108091351349_JuryNote double.Designer.cs">
+      <DependentUpon>202108091351349_JuryNote double.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108091354490_Added Evaluated in Competition.cs" />
+    <Compile Include="Migrations\202108091354490_Added Evaluated in Competition.Designer.cs">
+      <DependentUpon>202108091354490_Added Evaluated in Competition.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -368,6 +377,9 @@
     <Content Include="Views\Statistics\AboutAllCompetitions.cshtml" />
     <Content Include="Views\Statistics\AboutCompetitor.cshtml" />
     <Content Include="Views\Statistics\AboutOneCompetition.cshtml" />
+    <Content Include="Views\Evaluation\Index.cshtml" />
+    <Content Include="Views\Evaluation\Evaluates.cshtml" />
+    <Content Include="Views\PhotoCompetitor\GiveJuryNote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -444,6 +456,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108082256335_Added validation in VideoReview.resx">
       <DependentUpon>202108082256335_Added validation in VideoReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108091351349_JuryNote double.resx">
+      <DependentUpon>202108091351349_JuryNote double.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108091354490_Added Evaluated in Competition.resx">
+      <DependentUpon>202108091354490_Added Evaluated in Competition.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

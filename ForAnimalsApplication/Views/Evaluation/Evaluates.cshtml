@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Evaluates";
+}
+<br />
+<br />
+
+<h2 align="center">@ViewBag.Message</h2>
+@using (Html.BeginForm(actionName: "Index", controllerName: "Evaluation", method: FormMethod.Get))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Inapoi</button>
+}
+

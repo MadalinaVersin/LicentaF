@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger ">@ViewBag.ErrorMessage</div>
+}
+
+<h3 class="text-center">Evaluare Competitii</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead class="p-3 mb-2 bg-info text-white">
+                    <tr>
+                        <th>Nume competitie</th>
+                        <th>Actiuni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var competition in ViewBag.Competitions)
+                    {
+                        <tr>
+                            <td>@competition.CompetitionName</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @using (Html.BeginForm(actionName: "Details", controllerName: "Competition", method: FormMethod.Get, routeValues: new { id = competition.CompetitionId }))
+                                        {
+                                            <button style="margin-right: 5px" class="btn btn-primary " type="submit">Evalueaza</button>
+                                        }
+                                    </div>
+                                    <div class="col-md-6">
+                                        @using (Html.BeginForm(actionName: "Evaluates", controllerName: "Evaluation", method: FormMethod.Get, routeValues: new { id = competition.CompetitionId }))
+                                        {
+                                            <button style="margin-right: 5px" class="btn btn-danger " type="submit">Evaluat</button>
+                                        }
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
