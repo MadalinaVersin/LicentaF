@@ -161,6 +161,24 @@ namespace ForAnimalsApplication.Controllers
             return HttpNotFound("Missing animal id parameter!");
         }
 
+        [HttpDelete]
+        public ActionResult Delete(int? id)
+        {
+            if (id.HasValue)
+            {
+                VideoCompetitor videoCompetitor = db.VideoCompetitors.Find(id);
+                if (videoCompetitor != null)
+                {
+                    db.VideoCompetitors.Remove(videoCompetitor);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return HttpNotFound("Nu se poate gasi competitorul cu id-ul:" + id.ToString());
+            }
+            return HttpNotFound("Id-ul competitorului lipseste!");
+        }
+
+
         public Boolean IsUserReview(int competitorId, string userId)
         {
             var userReview = db.VideoReviews.ToList().Where(u => u.VideoCompetitorId == competitorId && u.ApplicationUserID == userId);

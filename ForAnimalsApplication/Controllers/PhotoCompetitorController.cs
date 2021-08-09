@@ -158,6 +158,24 @@ namespace ForAnimalsApplication.Controllers
             return HttpNotFound("Missing competitor id parameter!");
         }
 
+        [HttpDelete]
+        public ActionResult Delete(int? id)
+        {
+            if (id.HasValue)
+            {
+                PhotoCompetitor photoCompetitor = db.PhotoCompetitors.Find(id);
+                if (photoCompetitor != null)
+                {
+                    db.PhotoCompetitors.Remove(photoCompetitor);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return HttpNotFound("Nu se poate gasi competitorul cu id-ul:" + id.ToString());
+            }
+            return HttpNotFound("Id-ul competitorului lipseste!");
+        }
+
+
         public Boolean IsUserReview(int competitorId, string userId)
         {
             var userReview = db.PhotoReviews.ToList().Where(u => u.PhotoCompetitorId == competitorId && u.ApplicationUserID == userId);

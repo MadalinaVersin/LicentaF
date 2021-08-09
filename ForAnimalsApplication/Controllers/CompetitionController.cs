@@ -150,6 +150,23 @@ namespace ForAnimalsApplication.Controllers
             return HttpNotFound("Missing animal id parameter!");
         }
 
+        [HttpDelete]
+        public ActionResult Delete(int? id)
+        {
+            if (id.HasValue)
+            {
+                Competition competition = db.Competitions.Find(id);
+                if (competition != null)
+                {
+                    db.Competitions.Remove(competition);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return HttpNotFound("Nu se poate gasi competitia cu id-ul:" + id.ToString());
+            }
+            return HttpNotFound("Id-ul competitiei lipseste!");
+        }
+
 
         public IEnumerable<SelectListItem> GetAllCompetitionType()
         {

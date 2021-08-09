@@ -126,17 +126,21 @@ namespace ForAnimalsApplication.Controllers
         [HttpDelete]
         public ActionResult Delete(int? id)
         {
-            VideoReview review = db.VideoReviews.Find(id);
-            if (review != null)
+            if (id.HasValue)
             {
-                db.VideoReviews.Remove(review);
-                db.SaveChanges();
-                VideoCompetitor competitor = db.VideoCompetitors.Find(review.VideoCompetitorId);
-                competitor.FinalNote = CalculateFinalNote(review.VideoCompetitorId);
-                db.SaveChanges();
-                return RedirectToAction("Details", "VideoCompetitor", new { id = competitor.VideoCompetitorId });
+                VideoReview review = db.VideoReviews.Find(id);
+                if (review != null)
+                {
+                    db.VideoReviews.Remove(review);
+                    db.SaveChanges();
+                    VideoCompetitor competitor = db.VideoCompetitors.Find(review.VideoCompetitorId);
+                    competitor.FinalNote = CalculateFinalNote(review.VideoCompetitorId);
+                    db.SaveChanges();
+                    return RedirectToAction("Details", "VideoCompetitor", new { id = competitor.VideoCompetitorId });
+                }
+                return HttpNotFound("Nu se poate gasi comentariul cu id-ul: " + id.ToString() + "!");
             }
-            return HttpNotFound("Couldn't find the review with id " + id.ToString() + "!");
+            return HttpNotFound("Id-ul comentariului lipseste!");
         }
 
 

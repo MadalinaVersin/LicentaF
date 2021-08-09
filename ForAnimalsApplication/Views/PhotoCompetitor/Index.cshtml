@@ -32,6 +32,11 @@
                 {
                     <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Edit</button>
                 }
+                @using (Html.BeginForm(actionName: "Delete", controllerName: "PhotoCompetitor", method: FormMethod.Post, routeValues: new { id = competitor.PhotoCompetitorId }))
+                {
+                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                    <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+                }
 
             </div>
         </div>
