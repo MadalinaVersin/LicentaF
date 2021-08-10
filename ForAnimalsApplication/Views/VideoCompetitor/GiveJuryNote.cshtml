@@ -1,0 +1,33 @@
+﻿@model ForAnimalsApplication.Models.VideoCompetitor
+@{
+    ViewBag.Title = "GiveJuryNote";
+}
+
+<h2>Nota Juriu</h2>
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-danger ">@ViewBag.Message</div>
+}
+
+@using (Html.BeginForm("GiveJuryNote", "VideoCompetitor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(a => a.VideoCompetitorId)
+    @Html.HiddenFor(a => a.MicrochipNumber)
+    @Html.HiddenFor(a => a.Name)
+    @Html.HiddenFor(a => a.Age)
+    @Html.HiddenFor(a => a.Gender)
+    @Html.HiddenFor(a => a.Description)
+    @Html.HiddenFor(a => a.Vname)
+    @Html.HiddenFor(a => a.Vpath)
+    <br />
+    <br />
+
+
+    @Html.Label("JuryNote", "Nota Juriu: ")
+    @Html.EditorFor(a => a.JuryNote, new { htmlAttributes = new { @calss = "form-control" } })
+    @Html.ValidationMessageFor(a => a.JuryNote, "", new { @class = "text-danger" })
+
+    <button class="btn btn-primary" type="submit">Aloca</button>
+}

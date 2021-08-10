@@ -23,9 +23,16 @@
 </div>
 
 <br />
+
 @if (Model.EndDate < DateTime.Now)
 {
+  
     <p>Competitia s-a incheiat</p>
+    using (Html.BeginForm(actionName: "ShowTheWinner", controllerName: "Evaluation", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
+    {
+        <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Vezi castigatorul</button>
+    }
+    
 }
 else
 {
@@ -48,12 +55,12 @@ else
 
 @using (Html.BeginForm(actionName: "AboutOneCompetition", controllerName: "Statistics", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
 {
-        <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Statistici</button>
-    }
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Statistici</button>
+}
 @using (Html.BeginForm(actionName: "Index", controllerName: "Animal", method: FormMethod.Get))
-    {
-        <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Back</button>
-    }
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Back</button>
+}
 
 
 @if (Model.CompetitionType.Name == "Photo")
@@ -132,6 +139,10 @@ else
                 {
                     @Html.HttpMethodOverride(HttpVerbs.Delete)
                     <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+                }
+                @using (Html.BeginForm(actionName: "GiveJuryNote", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.VideoCompetitorId }))
+                {
+                    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">NotaJuriu</button>
                 }
 
             </div>

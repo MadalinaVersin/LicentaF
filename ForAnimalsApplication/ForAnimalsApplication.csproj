@@ -380,6 +380,8 @@
     <Content Include="Views\Evaluation\Index.cshtml" />
     <Content Include="Views\Evaluation\Evaluates.cshtml" />
     <Content Include="Views\PhotoCompetitor\GiveJuryNote.cshtml" />
+    <Content Include="Views\VideoCompetitor\GiveJuryNote.cshtml" />
+    <Content Include="Views\Evaluation\ShowTheWinner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "ShowTheWinner";
+    var emptySummaryMsgVar = "Nu exista detalii!";
+}
+
+<h2>ShowTheWinner</h2>
+@if (ViewBag.PhotoCompetitors ==null && ViewBag.VideoCompetitors == null)
+{
+    <p>Nu a fost evaluata competitia inca!</p>
+}
+else if (ViewBag.PhotoCompetitors != null)
+{
+    foreach (var competitor in ViewBag.PhotoCompetitors)
+    {
+        <h2>@competitor.Name</h2>
+        <img src="@Url.Content(competitor.ImagePath)" alt="Sample Image" width="250" height="250" />
+        <br />
+
+        @Html.Label("Descrition", "Description: ")
+        <br />
+        <div class="panel-body">
+         
+                <p>@competitor.Description</p>
+            
+        </div>
+        <div>
+            <p>@competitor.MicrochipNumber</p>
+        </div>
+
+    }
+}
+else
+{
+    foreach(var competitor in ViewBag.VideoCompetitors){
+        <h2>@competitor.Name</h2>
+        <div class="col-sm-4 col-md-4 col-xs-12">
+            <div class="title">@competitor.Vname</div>
+            <div class="video-frame">
+                <video style="width:100%; height:auto;" controls>
+                    <source src="@Url.Content(competitor.Vpath)" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        <br />
+
+        @Html.Label("Descrition", "Description: ")
+        <br />
+        <div class="panel-body">
+        
+            
+               <p>@competitor.Description</p>
+            
+        </div>
+        <div>
+            <p>@competitor.MicrochipNumber</p>
+        </div>
+    }
+}
+

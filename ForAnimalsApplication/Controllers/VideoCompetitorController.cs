@@ -127,7 +127,8 @@ namespace ForAnimalsApplication.Controllers
                         competitor.Age = competitorReq.Age;
                         competitor.Gender = competitorReq.Gender;
                         competitor.Description = competitorReq.Description;
-                        competitor.Vpath = competitorReq.Vpath;
+                       /* competitor.Vpath = competitorReq.Vpath;
+                        competitor.Vname = competitorReq.Vname;*/
                         if (updateImg == 1)
                         {
                             competitor.Vname = competitorReq.Vname;
@@ -178,6 +179,60 @@ namespace ForAnimalsApplication.Controllers
             return HttpNotFound("Id-ul competitorului lipseste!");
         }
 
+        [HttpGet]
+        public ActionResult GiveJuryNote(int? id)
+        {
+            if (id.HasValue)
+            {
+                VideoCompetitor competitor = db.VideoCompetitors.Find(id);
+                competitor.AgeList = GetAllAges();
+                competitor.GenderList = GetAllGenders();
+
+                if (competitor == null)
+                {
+                    return HttpNotFound("Nu se poate gasi competitorul cu id-ul" + id.ToString() + "!");
+                }
+                return View(competitor);
+            }
+            return HttpNotFound("Lipseste id-ul competitorului!");
+        }
+        [HttpPut]
+        public ActionResult GiveJuryNote(int id, VideoCompetitor competitorReq)
+        {
+            competitorReq.AgeList = GetAllAges();
+            competitorReq.GenderList = GetAllGenders();
+            // preluam competitorul  pe care vrem sa o modificam din baza de date
+            VideoCompetitor competitor = db.VideoCompetitors.Find(id);
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (competitorReq.JuryNote <= 0 || competitorReq.JuryNote > 5)
+                    {
+                        ViewBag.Message = "Nota trebuie sa fie mai mare ca 0 si mai mica sau egla cu 5!";
+                        return View(competitorReq);
+                    }
+
+
+                    if (TryUpdateModel(competitor))
+                    {
+                        competitor.JuryNote = competitorReq.JuryNote;
+                        db.SaveChanges();
+                        competitor.FinalNote = CalculateFinalNote(id);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                return View(competitorReq);
+            }
+            catch (Exception)
+            {
+                return View(competitorReq);
+            }
+        }
+
 
         public Boolean IsUserReview(int competitorId, string userId)
         {
@@ -223,6 +278,26 @@ namespace ForAnimalsApplication.Controllers
                 Text = "Mascul"
             });
             return selectList;
+        }
+
+        public double CalculateFinalNote(int competitorId)
+        {
+            List<VideoReview> reviews = db.VideoReviews.Where(a => a.VideoCompetitorId == competitorId).ToList();
+            VideoCompetitor competitor = db.VideoCompetitors.Find(competitorId);
+            double sum = 0;
+            for (var i = 0; i < reviews.Count; i++)
+            {
+                sum = sum + reviews[i].Note;
+            }
+            if (reviews.Count != 0)
+            {
+                sum = sum / reviews.Count;
+            }
+            sum = sum + competitor.JuryNote;
+            sum = sum / 2;
+            return sum;
+
+
         }
 
     }

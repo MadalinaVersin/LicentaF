@@ -29,7 +29,7 @@ namespace ForAnimalsApplication.Controllers
                     return View();
                 } else
                 {
-                    CalculateWinner(id);
+                    CalculateWinnerP(id);
                     ViewBag.Message = "Evaluare realizata cu succes!";
                     competition.Evaluated = true;
                     db.SaveChanges();
@@ -48,34 +48,93 @@ namespace ForAnimalsApplication.Controllers
                 }
                 else
                 {
+                    CalculateWinnerV(id);
                     ViewBag.Message = "Evaluare realizata cu succes!";
+                    competition.Evaluated = true;
+                    db.SaveChanges();
                     return View();
                 }
             }
            
         }
 
-        public void CalculateWinner(int id)
+        public void CalculateWinnerP(int id)
         {
             List<PhotoCompetitor> photoCompetitors = db.PhotoCompetitors.Where(u => u.CompetitionId == id).ToList();
-            double maxNote = photoCompetitors[0].FinalNote;
-            for(var i = 0; i < photoCompetitors.Count(); i++)
+            if (photoCompetitors.Count() > 0)
             {
-                if(photoCompetitors[i].FinalNote > maxNote)
+                double maxNote = photoCompetitors[0].FinalNote;
+                for (var i = 0; i < photoCompetitors.Count(); i++)
                 {
-                    maxNote = photoCompetitors[i].FinalNote;
+                    if (photoCompetitors[i].FinalNote > maxNote)
+                    {
+                        maxNote = photoCompetitors[i].FinalNote;
+                    }
                 }
-            }
 
-            List<PhotoCompetitor> winners = db.PhotoCompetitors.Where(u => u.FinalNote == maxNote).ToList();
-            for(var i = 0; i< winners.Count(); i++)
-            {
-                winners[i].Winner = true;
-                db.SaveChanges();
+                List<PhotoCompetitor> winners = db.PhotoCompetitors.Where(u => u.FinalNote == maxNote).ToList();
+                for (var i = 0; i < winners.Count(); i++)
+                {
+                    winners[i].Winner = true;
+                    db.SaveChanges();
+                }
             }
 
         }
 
-        
+        public void CalculateWinnerV(int id)
+        {
+            List<VideoCompetitor> videoCompetitors = db.VideoCompetitors.Where(u => u.CompetitionId == id).ToList();
+            if (videoCompetitors.Count() > 0)
+            {
+                double maxNote = videoCompetitors[0].FinalNote;
+                for (var i = 0; i < videoCompetitors.Count(); i++)
+                {
+                    if (videoCompetitors[i].FinalNote > maxNote)
+                    {
+                        maxNote = videoCompetitors[i].FinalNote;
+                    }
+                }
+
+                List<VideoCompetitor> winners = db.VideoCompetitors.Where(u => u.FinalNote == maxNote).ToList();
+                for (var i = 0; i < winners.Count(); i++)
+                {
+                    winners[i].Winner = true;
+                    db.SaveChanges();
+                }
+            }
+
+        }
+
+        public ActionResult ShowTheWinner(int? id)
+        {
+            if (id.HasValue)
+            {
+                Competition competition = db.Competitions.Include("CompetitionType").Where(u => u.CompetitionId == id).FirstOrDefault();
+
+
+                if (competition != null)
+                {
+                    if (competition.CompetitionType.Name == "Photo")
+                    {
+                        List<PhotoCompetitor> photoCompetitors = db.PhotoCompetitors.Where(u => u.CompetitionId == id && u.Winner == true).ToList();
+                        ViewBag.PhotoCompetitors = photoCompetitors;
+   
+                        return View();
+                    }
+                    else if (competition.CompetitionType.Name == "Video")
+                    {
+                        List<VideoCompetitor> videoCompetitors = db.VideoCompetitors.Where(u => u.CompetitionId == id && u.Winner == true).ToList();
+                        ViewBag.VideoCompetitors = videoCompetitors;
+                        return View();
+                    }
+                }
+                return HttpNotFound("Nu exista competitia cu id-ul:" + id.ToString());
+            }
+            return HttpNotFound("Lipseste id-ul competitiei!");
+
+        }
+
+
     }
 }
