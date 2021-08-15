@@ -1,31 +1,35 @@
 ﻿@model ForAnimalsApplication.Models.PhotoReview
 @{
-    ViewBag.Title = "Create a review.";
+    ViewBag.Title = "Adauga Recenzie";
+}
+@using (Html.BeginForm(actionName: "Details", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = Model.PhotoCompetitorId }))
+{
+    <button style="margin-bottom:10px" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
 }
 
-<h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm(actionName: "New", controllerName: "PhotoReview", method: FormMethod.Post))
-{
-    @Html.HiddenFor(a => a.PhotoReviewId)
-    @Html.HiddenFor(a => a.PhotoCompetitorId)
 
-    @Html.Label("Text", "Your review:")
+<img src="~/Content/Image/Nu stiu3.jpg" />
+
+<div style="margin-left:35%">
+    <p style="font-size:35px; font-weight: bold;">@ViewBag.Title</p>
+    @using (Html.BeginForm(actionName: "New", controllerName: "PhotoReview", method: FormMethod.Post))
+    {@Html.HiddenFor(a => a.PhotoReviewId) @Html.HiddenFor(a => a.PhotoCompetitorId) @Html.Label("Text", "Comentariu:")
     <br />
-    @Html.TextArea("Text", null, new { placeholder = "Type in the book's review", @class = "form-control", @rows = "10" })
+    @Html.TextArea("Text", null, new { placeholder = "Introduceti un comentariu", @class = "form-control", @rows = "10" })
     @Html.ValidationMessageFor(b => b.Text, "", new { @class = "text-danger" })
     <br />
     <br />
 
     @Html.Label("Note", "Nota:")
     <br />
-    @Html.DropDownListFor(c => c.Note, new SelectList(Model.NoteList, "Value", "Text"), "Choose a note", new { @class = "form-control" })
+    @Html.DropDownListFor(c => c.Note, new SelectList(Model.NoteList, "Value", "Text"), "Alegeti o nota", new { @class = "form-control" })
     @Html.ValidationMessageFor(c => c.Note, "", new { @class = "text-danger" })
     <br />
     <br />
 
-    <button class="btn btn-primary col-lg-1" type="submit" style="margin-left: 90px">Add</button>
-
-
+    <button class="btn btn-primary col-lg-3" type="submit">Adauga recenzie</button>
+    <br />
 }
+</div>
 

@@ -128,3 +128,5 @@ C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsAppli
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedvalidationinVideoReview.resources
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.JuryNotedouble.resources
 C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.AddedEvaluatedinCompetition.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.Testifcssworks.resources
+C:\Users\Madalina Versin\Desktop\Licenat-F\ForAnimalsApplication\ForAnimalsApplication\obj\Debug\ForAnimalsApplication.Migrations.ChangeJuryNoteindoubleforVideoCompetitors.resources

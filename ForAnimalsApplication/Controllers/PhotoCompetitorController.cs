@@ -132,7 +132,7 @@ namespace ForAnimalsApplication.Controllers
                         }
                         db.SaveChanges();
                     }
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", "Competition", new { id = competitorReq.CompetitionId });
                 }
                 return View(competitorReq);
             }

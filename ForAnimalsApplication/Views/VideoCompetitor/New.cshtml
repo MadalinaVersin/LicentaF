@@ -2,8 +2,12 @@
 @{
     ViewBag.Title = "New VideoCompetitor";
 }
-
-<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm(actionName: "Details", controllerName: "Competition", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
+{
+    <button style="margin-bottom:10px" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
+}
+<div  class="newCompBackground">
+<p style="font-size:35px; font-weight: bold; margin-top:100px; ">Adauga competitor</p>
 
 @using (Html.BeginForm("New", "VideoCompetitor", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -11,21 +15,21 @@
     @Html.HiddenFor(a => a.CompetitionId)
     @Html.HiddenFor(a => a.VideoCompetitorId)
 
-    @Html.Label("Name", "AnimalName: ")
+    @Html.Label("Name", "Nume competitor: ")
     <br />
     @Html.TextBoxFor(a => a.Name, null, new
     {
-        placeholder = "Type in the animal's name",
+        placeholder = "Introduceti numele competitorului",
         @class = "form-control"
     })
 
     @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
     <br />
-    @Html.Label("MicrochipNumber", "Numar Microcip: ")
+    @Html.Label("MicrochipNumber", "Numar microcip: ")
     <br />
     @Html.TextBoxFor(a => a.MicrochipNumber, null, new
     {
-        placeholder = "Type in the animal's microcip",
+        placeholder = "Introduceti numarul microcipului",
         @class = "form-control"
     })
 
@@ -33,21 +37,21 @@
     <br />
     @Html.Label("Age", "Varsta animal :")
     <br />
-    @Html.DropDownListFor(c => c.Age, new SelectList(Model.AgeList, "Value", "Text"), "Alege varsta", new { @class = "form-control" })
+    @Html.DropDownListFor(c => c.Age, new SelectList(Model.AgeList, "Value", "Text"), "Alegeti varsta competitorului", new { @class = "form-control" })
     @Html.ValidationMessageFor(c => c.Age, "", new { @class = "text-danger" })
     <br />
-    
-    @Html.Label("Gender", "Gen animal :")
+
+    @Html.Label("Gender", "Sex competitor:")
     <br />
-    @Html.DropDownListFor(c => c.Gender, new SelectList(Model.GenderList, "Value", "Text"), "Alege genul", new { @class = "form-control" })
+    @Html.DropDownListFor(c => c.Gender, new SelectList(Model.GenderList, "Value", "Text"), "Alegeti sexul competitorului", new { @class = "form-control" })
     @Html.ValidationMessageFor(c => c.Gender, "", new { @class = "text-danger" })
     <br />
 
-    @Html.Label("Description", "Description: ")
+    @Html.Label("Description", "Descriere: ")
     <br />
     @Html.TextArea("Description", null, new
     {
-        placeholder = "Type in the competitor's description",
+        placeholder = "Introduceti o scurta descriere despre competitor",
         @class = "form-control",
         @rows = "10"
     })
@@ -56,15 +60,12 @@
     <br />
     <br />
     <div class="form-group">
-        <label> Upload Video files: </label>
+        <label> Incarcati un videoclip: </label>
         <div class="input-group">
-            @Html.TextBox("VideoFile", "", new { type = "file", required = "required"}) <br />
+            @Html.TextBox("VideoFile", "", new { type = "file", required = "required" }) <br />
         </div>
     </div>
-    <br />
-
-
-    <button class="btn btn-primary" type="submit">Create</button>
+    <button class="btn btn-primary" type="submit">Adauga competitor</button>
 }
-
+</div>
 

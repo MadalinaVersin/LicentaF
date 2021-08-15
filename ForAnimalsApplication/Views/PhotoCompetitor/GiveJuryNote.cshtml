@@ -1,19 +1,23 @@
 ﻿@model ForAnimalsApplication.Models.PhotoCompetitor
 @{
-    ViewBag.Title = "GiveJuryNote";
+    ViewBag.Title = "Nota Juriu";
 }
-
-<h2>Nota Juriu</h2>
+@using (Html.BeginForm(actionName: "Details", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = Model.PhotoCompetitorId }))
+{
+    <button style="margin-bottom:10px" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
+}
 @if (ViewBag.Message != null)
 {
-    <div class="alert alert-danger ">@ViewBag.Message</div>
+    <div class="alert alert-danger" style="margin-top:50px; text-align:center;">@ViewBag.Message</div>
 }
+
 
 @using (Html.BeginForm("GiveJuryNote", "PhotoCompetitor", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HttpMethodOverride(HttpVerbs.Put)
 
     @Html.HiddenFor(a => a.PhotoCompetitorId)
+    @Html.HiddenFor(a => a.CompetitionId)
     @Html.HiddenFor(a => a.MicrochipNumber)
     @Html.HiddenFor(a => a.Name)
     @Html.HiddenFor(a => a.Age)
@@ -24,9 +28,13 @@
     <br />
 
 
-    @Html.Label("JuryNote", "Nota Juriu")
-    @Html.EditorFor(a => a.JuryNote, new { htmlAttributes = new { @calss = "form-control" } })
-    @Html.ValidationMessageFor(a => a.JuryNote, "", new { @class = "text-danger" })
+    <div style="margin-left:37%;">
+        <p style="font-size:35px; font-weight: bold; margin-top:50px;">@ViewBag.Title</p>
+        <br />
+        @Html.EditorFor(a => a.JuryNote, new { htmlAttributes = new { @calss = "form-control" } })
+        @Html.ValidationMessageFor(a => a.JuryNote, "", new { @class = "text-danger" })
 
-    <button class="btn btn-primary" type="submit">Aloca</button>
+        <button class="btn btn-primary" type="submit">Aloca</button>
+    </div>
+    <img src="~/Content/Image/juriu.jpg" / style="margin-left:27%; margin-top:15%; ">
 }

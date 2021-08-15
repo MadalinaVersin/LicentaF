@@ -63,6 +63,12 @@
     </script>
 </head>
 <body>
+@*    @using (Html.BeginForm(actionName: "Index", controllerName: "Competition", method: FormMethod.Get))
+    {
+        <button style="margin-bottom:10px" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
+    }*@
+    <br />
+    <br />
     <h1 class="text-center"> Statistici despre competitii</h1>
     <br />
     <div cls="row">
@@ -99,12 +105,12 @@
                                 {
                                     if (c.EndDate >= DateTime.Now)
                                     {
-                                    <tr>
-                                        <td>@c.CompetitionName</td>
-                                        <td>@c.CompetitionType.Name</td>
-                                        <td>@c.StartDate</td>
-                                        <td>@c.EndDate</td>
-                                    </tr>
+                                        <tr>
+                                            <td>@c.CompetitionName</td>
+                                            <td>@c.CompetitionType.Name</td>
+                                            <td>@c.StartDate</td>
+                                            <td>@c.EndDate</td>
+                                        </tr>
                                     }
                                 }
                             </tbody>

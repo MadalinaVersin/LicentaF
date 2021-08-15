@@ -1,71 +1,75 @@
 ﻿@model ForAnimalsApplication.Models.PhotoCompetitor
 @{
-    ViewBag.Title = "New PhotoCompetitor";
+    ViewBag.Title = "Adauga competitor";
 }
-
-<h2>@ViewBag.Title</h2>
-
-@using (Html.BeginForm("New", "PhotoCompetitor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm(actionName: "Details", controllerName: "Competition", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
 {
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(a => a.PhotoCompetitorId)
-    @Html.HiddenFor(a => a.CompetitionId)
-
-    @Html.Label("Name", "AnimalName: ")
-    <br />
-    @Html.TextBoxFor(a => a.Name, null, new
-    {
-        placeholder = "Type in the animal's name",
-        @class = "form-control"
-    })
-
-    @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
-    <br />
-    @Html.Label("MicrochipNumber", "Numar Microcip: ")
-    <br />
-    @Html.TextBoxFor(a => a.MicrochipNumber, null, new
-    {
-        placeholder = "Type in the microcip's name",
-        @class = "form-control"
-    })
-
-    @Html.ValidationMessageFor(a => a.MicrochipNumber, "", new { @class = "text-danger" })
-    <br />
-    @Html.Label("Age", "Varsta animal :")
-    <br />
-    @Html.DropDownListFor(a => a.Age, new SelectList(Model.AgeList, "Value", "Text"), "Alege varsta", new { @class = "form-control" })
-    @Html.ValidationMessageFor(a => a.Age, "", new { @class = "text-danger" })
-    <br />
-
-    @Html.Label("Gender", "Gen animal :")
-    <br />
-    @Html.DropDownListFor(a => a.Gender, new SelectList(Model.GenderList, "Value", "Text"), "Alege varsta", new { @class = "form-control" })
-    @Html.ValidationMessageFor(a => a.Gender, "", new { @class = "text-danger" })
-    <br />
-
-    @Html.Label("Description", "Description: ")
-    <br />
-    @Html.TextArea("Description", null, new
-    {
-        placeholder = "Type in the competitor's description",
-        @class = "form-control",
-        @rows = "10"
-    })
-
-    @Html.ValidationMessageFor(a => a.Description, "", new { @class = "text-danger" })
-    <br />
-    <br />
-    <div class="form-group">
-        @Html.LabelFor(a => a.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input type="file" name="ImageFile" required />
-        </div>
-        @Html.ValidationMessageFor(a => a.ImagePath, "", new { @class = "text-danger" })
-    </div>
-    <br />
-
-
-    <button class="btn btn-primary" type="submit">Create</button>
+    <button style="margin-bottom:10px" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
 }
 
+<p style="font-size:35px; font-weight: bold; margin-top:100px; ">@ViewBag.Title</p>
+<div class="newCompBackground">
+    @using (Html.BeginForm("New", "PhotoCompetitor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(a => a.PhotoCompetitorId)
+        @Html.HiddenFor(a => a.CompetitionId)
+
+        @Html.Label("Name", "Nume competitor: ")
+        <br />
+        @Html.TextBoxFor(a => a.Name, null, new
+        {
+            placeholder = "Introduceti numele competitorului",
+            @class = "form-control"
+        })
+
+        @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
+        <br />
+        @Html.Label("MicrochipNumber", "Numar microcip: ")
+        <br />
+        @Html.TextBoxFor(a => a.MicrochipNumber, null, new
+        {
+            placeholder = "Introduceti numarul microcipului",
+            @class = "form-control"
+        })
+
+        @Html.ValidationMessageFor(a => a.MicrochipNumber, "", new { @class = "text-danger" })
+        <br />
+        @Html.Label("Age", "Varsta competitor:")
+        <br />
+        @Html.DropDownListFor(a => a.Age, new SelectList(Model.AgeList, "Value", "Text"), "Alegeti varsta competitorului", new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Age, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.Label("Gender", "Sex competitor:")
+        <br />
+        @Html.DropDownListFor(a => a.Gender, new SelectList(Model.GenderList, "Value", "Text"), "Alegeti sexul competitorului", new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Gender, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.Label("Description", "Descriere competitor: ")
+        <br />
+        @Html.TextArea("Description", null, new
+        {
+            placeholder = "Introduceti o scurta descriere despre competitor",
+            @class = "form-control",
+            @rows = "10"
+        })
+
+        @Html.ValidationMessageFor(a => a.Description, "", new { @class = "text-danger" })
+        <br />
+        <br />
+        <div class="form-group">
+            @Html.Label("Imagine competitor", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="ImageFile" required />
+            </div>
+            @Html.ValidationMessageFor(a => a.ImagePath, "", new { @class = "text-danger" })
+        </div>
+        <br />
+
+
+        <button class="btn btn-primary" type="submit">Adauga competitor</button>
+    }
+</div>
 

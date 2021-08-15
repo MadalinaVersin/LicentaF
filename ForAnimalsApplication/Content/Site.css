@@ -22,12 +22,73 @@ select,
 textarea {
     max-width: 280px;
 }
+.center {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #990099;
+}
 
 .responsive {
     width: 100%;
     height: auto;
     margin-top: 12%;
 }
+.compBackground {
+    background-image: url('Image/N05_petshop_full.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.editCompBackground {
+    background-image: url('Image/Edit.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.newCompBackground {
+    background-image: url('Image/New1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.newRewBackground {
+    background-image: url('Image/Nu stiu3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    background: rgb(51, 0, 51);
+    background: rgba(51, 0, 51, 1); /* Black see-through */
+    color: #f1f1f1;
+    width: 100%;
+    transition: .5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.containerCompetition{
+    height:400px;
+}
+.containerCompetition:hover .overlay{
+    opacity: 1;
+}
+
 
 .button {
     background-color: #4CAF50; /* Green */
@@ -55,26 +116,91 @@ textarea {
     margin-top: 6%;
     font-size: 20px;
 }
-
     .button1:hover {
         background-color: #4CAF50;
         color: white;
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     }
+.buttonBack {
+    position: absolute;
+    border-radius: 12px;
+    height: 40px;
+    margin-top:5px;
+}
+
+
+.buttonBack:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 
 .button2 {
     position: absolute;
     border-radius: 12px;
     height: 40px;
+    
 }
 
-.plusImg1 {
-    width: 15px;
-    height: 15px;
-}
 
 .button2:hover {
     background-color: #ffeecc;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button3 {
+    
+    border-radius: 12px;
+    height: 40px;
+}
+    .button3:hover {
+        background-color: #ffeecc;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+
+.statisticsImg {
+    width:20px;
+    height:20px;
+}
+.plusImg {
+    width: 15px;
+    height: 15px;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: white
+    /*padding: 10px;*/
+}
+
+.grid-container-competitors {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: white
+}
+
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.grid-item-details-competitor {
+    background-color: rgba(255, 255, 255, 0.8);
+    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+    padding: 20px;
+}
+.grid-item-competitors {
+    background-color: rgba(255, 255, 255, 0.8);
+    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.competitionImg {
+
 }
 

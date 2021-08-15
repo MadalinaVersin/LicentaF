@@ -266,6 +266,14 @@
     <Compile Include="Migrations\202108091354490_Added Evaluated in Competition.Designer.cs">
       <DependentUpon>202108091354490_Added Evaluated in Competition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108112005173_Test if css works.cs" />
+    <Compile Include="Migrations\202108112005173_Test if css works.Designer.cs">
+      <DependentUpon>202108112005173_Test if css works.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108132221186_Change JuryNote in double for VideoCompetitors.cs" />
+    <Compile Include="Migrations\202108132221186_Change JuryNote in double for VideoCompetitors.Designer.cs">
+      <DependentUpon>202108132221186_Change JuryNote in double for VideoCompetitors.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Competition.cs" />
@@ -288,11 +296,38 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Image\1.jpg" />
     <Content Include="Content\Image\504-5044750_male-user-icon-ancient-asian-peace-symbol.png" />
+    <Content Include="Content\Image\544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />
     <Content Include="Content\Image\bck1.jpg" />
     <Content Include="Content\Image\bck2.jpg" />
+    <Content Include="Content\Image\cane-e-gatto.jpg" />
+    <Content Include="Content\Image\cerc.jpg" />
+    <Content Include="Content\Image\CompetitionImage.jpg" />
+    <Content Include="Content\Image\CompImg.jpg" />
+    <Content Include="Content\Image\Edit.jpg" />
+    <Content Include="Content\Image\Gatito-En-Png.png" />
+    <Content Include="Content\Image\header_bw.png" />
     <Content Include="Content\Image\icon-plus.png" />
+    <Content Include="Content\Image\istockphoto-609715752-612x612.jpg" />
+    <Content Include="Content\Image\juriu.jpg" />
+    <Content Include="Content\Image\kot-seryy-lapa-bumaga-belyy.jpg" />
+    <Content Include="Content\Image\N05_petshop_full.jpg" />
+    <Content Include="Content\Image\new.png" />
+    <Content Include="Content\Image\New1.jpg" />
+    <Content Include="Content\Image\newPatient.jpg" />
+    <Content Include="Content\Image\newReview.jpg" />
+    <Content Include="Content\Image\Nu stiu.jpg" />
+    <Content Include="Content\Image\Nu stiu2.jpg" />
+    <Content Include="Content\Image\Nu stiu3.jpg" />
+    <Content Include="Content\Image\PoateEdit.jpg" />
+    <Content Include="Content\Image\PoateReview.jpg" />
+    <Content Include="Content\Image\Pt details.jpg" />
+    <Content Include="Content\Image\ptNotaJuriu.png" />
+    <Content Include="Content\Image\recenzie.jpg" />
+    <Content Include="Content\Image\STATISTICS.png" />
     <Content Include="Content\Image\user-1648810-1401302.png" />
+    <Content Include="Content\Image\Vedem2.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -464,6 +499,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108091354490_Added Evaluated in Competition.resx">
       <DependentUpon>202108091354490_Added Evaluated in Competition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108112005173_Test if css works.resx">
+      <DependentUpon>202108112005173_Test if css works.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108132221186_Change JuryNote in double for VideoCompetitors.resx">
+      <DependentUpon>202108132221186_Change JuryNote in double for VideoCompetitors.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
