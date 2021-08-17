@@ -35,10 +35,24 @@ textarea {
 .responsive {
     width: 100%;
     height: auto;
-    margin-top: 12%;
+    margin-top: 8%;
 }
 .compBackground {
     background-image: url('Image/N05_petshop_full.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.newCompetitionBackground {
+    background-image: url('Image/labrador-puppy-and-chartreux-kitten-jean-michel-labat.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.editCompetitionBackground {
+    background-image: url('Image/Dogs_Cats_Rottweiler_White_background_Two_Puppy_512746_1280x742.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -113,7 +127,7 @@ textarea {
     border: 2px solid #4CAF50;
     width: 200px;
     height: 100px;
-    margin-top: 6%;
+    margin-top: 4%;
     font-size: 20px;
 }
     .button1:hover {
@@ -200,7 +214,5 @@ textarea {
     text-align: center;
 }
 
-.competitionImg {
 
-}
 

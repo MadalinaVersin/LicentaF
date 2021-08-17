@@ -2,12 +2,13 @@
 @{
     ViewBag.Title = "DisplayRoles";
 }
-@Html.Partial("_TopMenuPartial")
-<h2>Role Mangement</h2>
+<h1 class="text-center" style="font-weight:bold;">Toate rolurile</h1>
 
-<div class="row">
+@Html.Partial("_TopMenuPartial")
+
+<div class="row" style="margin-top: 30px;">
     <div class="col-6" style="border-left:1px solid black;">
-        <h3 class="text-center">All Roles</h3>
+       
         @if (Model.Count == 0)
         {
             <p>No roles found!</p>
@@ -17,8 +18,7 @@
             <table class="table">
                 <thead class="bg-dark text-white">
                     <tr>
-                        <th>Role Name</th>
-                        <th>Actions</th>
+                        <th style="font-size:20px;">Nume rol</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,9 +26,7 @@
                     {
                         <tr>
                             <td>@r.Name</td>
-                            <td>
-                                Remove Role
-                            </td>
+
                         </tr>
                     }
                 </tbody>

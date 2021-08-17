@@ -25,12 +25,14 @@ namespace ForAnimalsApplication.Controllers
                 var notEvaluatesF = db.PhotoCompetitors.ToList().Where(u => u.CompetitionId == id && u.JuryNote == 0);
                 if(notEvaluatesF.Count() != 0)
                 {
-                    ViewBag.Message = "Trebuie sa evaluati toti concurentii!";
+                    ViewBag.IsOk = false;
+                    /*ViewBag.Message = "Trebuie sa evaluati toti concurentii!";*/
                     return View();
                 } else
                 {
                     CalculateWinnerP(id);
-                    ViewBag.Message = "Evaluare realizata cu succes!";
+                    ViewBag.IsOk = true;
+                    /*ViewBag.Message = "Evaluare realizata cu succes!";*/
                     competition.Evaluated = true;
                     db.SaveChanges();
                     return View();
@@ -43,13 +45,14 @@ namespace ForAnimalsApplication.Controllers
                 var notEvaluatesV = db.VideoCompetitors.ToList().Where(u => u.CompetitionId == id && u.JuryNote == 0);
                 if (notEvaluatesV.Count() != 0)
                 {
-                    ViewBag.Message = "Trebuie sa evaluati toti concurentii!";
+                    ViewBag.IsOk = false;
                     return View();
                 }
                 else
                 {
                     CalculateWinnerV(id);
-                    ViewBag.Message = "Evaluare realizata cu succes!";
+                    ViewBag.IsOk = true;
+                    
                     competition.Evaluated = true;
                     db.SaveChanges();
                     return View();

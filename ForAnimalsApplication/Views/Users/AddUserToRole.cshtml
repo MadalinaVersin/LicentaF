@@ -3,30 +3,28 @@
 @{
     ViewData["Title"] = "AddUserToRole";
 }
+<h1 class="text-center" style="font-weight:bold;">Adauga rol la cont</h1>
 @Html.Partial("_TopMenuPartial")
-<h3 class="text-center">Add User To Role</h3>
-<hr />
 
-<div class="container">
+
+<div class="container" align="center" style="margin-top:7%">
     <div class="row">
         <div class="col-6 offset-3">
             @using (Html.BeginForm(actionName: "AddUserToRole", controllerName: "Users", method: FormMethod.Post))
             {
-                <label>Select UserName</label>
-                @Html.DropDownListFor(a => a.UserId, new SelectList(ViewBag.Users, "Value", "Text"), "Choose a user", new { @class = "form-control", required="required" })
+                <label>Selectati contul</label>
+                @Html.DropDownListFor(a => a.UserId, new SelectList(ViewBag.Users, "Value", "Text"), "Alegeti contul", new { @class = "form-control", required="required" })
                 @Html.ValidationMessageFor(a => a.UserId, "", new { @class = "text-danger" })
 
                 <br />
                 <br />
-                <label>Select Role Name</label>
-                @Html.DropDownListFor(a => a.RoleName, new SelectList(ViewBag.Roles, "Value", "Text"), "Choose a role", new { @class = "form-control", required="required" })
+                <label>Selectati rolul</label>
+                @Html.DropDownListFor(a => a.RoleName, new SelectList(ViewBag.Roles, "Value", "Text"), "Alegeti rolul", new { @class = "form-control", required="required" })
                 @Html.ValidationMessageFor(a => a.RoleName, "", new { @class = "text-danger" })
-
-                <button class="btn btn-outline-primary btn-block" type="submit">Assign</button>
-                using (Html.BeginForm(actionName: "Index", controllerName: "Users", method: FormMethod.Get))
-                {
-                    <button style="margin-right:5px" class="btn btn-outline-danger btn-block" type="submit">Cancel</button>
-                }
+                <br />
+                <br />
+                <button class="btn btn-primary" type="submit">Asigneaza</button>
+                
 
             }
         </div>

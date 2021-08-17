@@ -28,7 +28,7 @@
         <br />
         @Html.Label("Note", "Nota:")
         <br />
-        @Html.DropDownListFor(c => c.Note, new SelectList(Model.NoteList, "Value", "Text"), "Choose a note", new { @class = "form-control" })
+        @Html.DropDownListFor(c => c.Note, new SelectList(Model.NoteList, "Value", "Text"), "Alege o nota", new { @class = "form-control" })
         @Html.ValidationMessageFor(c => c.Note, "", new { @class = "text-danger" })
         <br />
 

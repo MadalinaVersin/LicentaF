@@ -5,9 +5,26 @@
 <br />
 <br />
 
-<h2 align="center">@ViewBag.Message</h2>
-@using (Html.BeginForm(actionName: "Index", controllerName: "Evaluation", method: FormMethod.Get))
+@if (ViewBag.IsOk == false)
 {
-    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Inapoi</button>
+<div align="center">
+    <img src="~/Content/Image/incorrect.png" style="height:200px; width:200px"/>
+    <p style="font-size:25px; font-weight:bold">Trebuie sa evaluati toti competitorii!</p>
+    @using (Html.BeginForm(actionName: "Index", controllerName: "Evaluation", method: FormMethod.Get))
+    {
+    <button class="btn btn-primary" type="submit">Ok</button>
+    }
+</div>
 }
-
+else
+{
+<div align="center">
+    <img src="~/Content/Image/correct.jpg" style="height:200px; width:200px"/>
+    <p style="font-size:25px; font-weight:bold;">Evaluare realizata cu succes!</p>
+    @using (Html.BeginForm(actionName: "Index", controllerName: "Evaluation", method: FormMethod.Get))
+    {
+    <button class="btn btn-primary" type="submit">Ok</button>
+    }
+</div>
+   
+}

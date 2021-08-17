@@ -1,29 +1,35 @@
 ﻿@model ForAnimalsApplication.Models.VideoReview
 @{
-    ViewBag.Title = "Edit VideoReview";
+    ViewBag.Title = "Editeaza recenzia";
 }
-
-<h2>@ViewBag.Title</h2>
-
-@using (Html.BeginForm("Edit", "VideoReview", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm(actionName: "Details", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = Model.VideoCompetitorId}))
 {
-    @Html.HttpMethodOverride(HttpVerbs.Put)
-
-    @Html.HiddenFor(a => a.VideoCompetitorId)
-    @Html.HiddenFor(a => a.VideoReviewId)
-    <br />
-    <br />
-    @Html.Label("Text", "Text: ")
-    <br />
-    @Html.TextAreaFor(a => a.Text, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(a => a.Text, "", new { @class = "text-danger" })
-    <br />
-    @Html.Label("Note", "Animal's evaluation:")
-    <br />
-    @Html.DropDownListFor(c => c.Note, new SelectList(Model.NoteList, "Value", "Text"), "Choose a note", new { @class = "form-control" })
-    @Html.ValidationMessageFor(c => c.Note, "", new { @class = "text-danger" })
-    <br />
-
-    <button class="btn btn-primary" type="submit">Update</button>
+    <button style="margin-bottom:10px" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
 }
 
+<div style="margin-left:35%">
+    <img src="~/Content/Image/Gatito-En-Png.png" />
+    <p style="font-size:35px; font-weight: bold;">@ViewBag.Title</p>
+
+    @using (Html.BeginForm("Edit", "VideoReview", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Put)
+
+        @Html.HiddenFor(a => a.VideoCompetitorId)
+        @Html.HiddenFor(a => a.VideoReviewId)
+        <br />
+        <br />
+        @Html.Label("Text", "Comentariu: ")
+        <br />
+        @Html.TextAreaFor(a => a.Text,10,100, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(a => a.Text, "", new { @class = "text-danger" })
+        <br />
+        @Html.Label("Note", "Nota:")
+        <br />
+        @Html.DropDownListFor(c => c.Note, new SelectList(Model.NoteList, "Value", "Text"), "Alege o nota ", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Note, "", new { @class = "text-danger" })
+        <br />
+
+        <button class="btn btn-primary" type="submit">Actualizeaza</button>
+    }
+</div>

@@ -305,13 +305,19 @@
     <Content Include="Content\Image\cerc.jpg" />
     <Content Include="Content\Image\CompetitionImage.jpg" />
     <Content Include="Content\Image\CompImg.jpg" />
+    <Content Include="Content\Image\correct.jpg" />
+    <Content Include="Content\Image\Dogs_Cats_Rottweiler_White_background_Two_Puppy_512746_1280x742.jpg" />
+    <Content Include="Content\Image\Dogs_Cats_White_495161_3840x2400.jpg" />
+    <Content Include="Content\Image\dok-01-rk0598-01p.jpg" />
     <Content Include="Content\Image\Edit.jpg" />
     <Content Include="Content\Image\Gatito-En-Png.png" />
     <Content Include="Content\Image\header_bw.png" />
     <Content Include="Content\Image\icon-plus.png" />
+    <Content Include="Content\Image\incorrect.png" />
     <Content Include="Content\Image\istockphoto-609715752-612x612.jpg" />
     <Content Include="Content\Image\juriu.jpg" />
     <Content Include="Content\Image\kot-seryy-lapa-bumaga-belyy.jpg" />
+    <Content Include="Content\Image\labrador-puppy-and-chartreux-kitten-jean-michel-labat.jpg" />
     <Content Include="Content\Image\N05_petshop_full.jpg" />
     <Content Include="Content\Image\new.png" />
     <Content Include="Content\Image\New1.jpg" />
@@ -328,6 +334,7 @@
     <Content Include="Content\Image\STATISTICS.png" />
     <Content Include="Content\Image\user-1648810-1401302.png" />
     <Content Include="Content\Image\Vedem2.jpg" />
+    <Content Include="Content\Image\winner.jpeg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

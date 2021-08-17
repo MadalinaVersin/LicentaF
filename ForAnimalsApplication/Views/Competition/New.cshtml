@@ -6,65 +6,64 @@
 {
         <button style="margin-bottom:10px" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
 }
+<div class="newCompetitionBackground">
+    <p style="font-size:35px; font-weight: bold; margin-top:100px; ">@ViewBag.Title</p>
 
-<p style="font-size:35px; font-weight: bold; margin-top:100px; ">@ViewBag.Title</p>
 
-
-@using (Html.BeginForm("New", "Competition", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-
-    @Html.Label("CompetitionName", "Nume competitie:")
-    <br />
-    @Html.TextBoxFor(c => c.CompetitionName, null, new
+    @using (Html.BeginForm("New", "Competition", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        placeholder = "Introtuceti numele competitiei",
-        @class = "form-control"
-    })
 
-    @Html.ValidationMessageFor(c => c.CompetitionName, "", new { @class = "text-danger" })
-    <br />
-    @Html.Label("StartDate", "Data Start:")
-    <br />
-    <input if="stratDate" type="datetime-local" name="StartDate" />
-    @Html.ValidationMessageFor(c => c.StartDate, "", new { @class = "text-danger" })
-    <br />
-    @Html.Label("EndDate", "Data Sfarsit:")
-    <br />
-    <input if="endDate" type="datetime-local" name="EndDate" />
+        @Html.Label("CompetitionName", "Nume competitie:")
+        <br />
+        @Html.TextBoxFor(c => c.CompetitionName, null, new
+        {
+            placeholder = "Introtuceti numele competitiei",
+            @class = "form-control"
+        })
 
-    @Html.ValidationMessageFor(c => c.EndDate, "", new { @class = "text-danger" })
-    <br />
-    <br />
-    @Html.Label("Description", "Descriere: ")
-    <br />
+        @Html.ValidationMessageFor(c => c.CompetitionName, "", new { @class = "text-danger" })
+        <br />
+        @Html.Label("StartDate", "Data Start:")
+        <br />
+        <input if="stratDate" type="datetime-local" name="StartDate" />
+        @Html.ValidationMessageFor(c => c.StartDate, "", new { @class = "text-danger" })
+        <br />
+        @Html.Label("EndDate", "Data Sfarsit:")
+        <br />
+        <input if="endDate" type="datetime-local" name="EndDate" />
 
-    @Html.TextArea("Description", null, new
-    {
-        placeholder = "Introduceti informatii despre competitie",
-        @class = "form-control",
-        @rows = "10"
-    })
+        @Html.ValidationMessageFor(c => c.EndDate, "", new { @class = "text-danger" })
+        <br />
+        <br />
+        @Html.Label("Description", "Descriere: ")
+        <br />
 
-    @Html.ValidationMessageFor(a => a.Description, "", new { @class = "text-danger" })
-    <br />
-    <br />
-    @Html.Label("CompetionType", "Tip Competitie:")
-    <br />
-    @Html.DropDownListFor(c => c.CompetitionTypeId, new SelectList(Model.CompetitionTypeList, "Value", "Text"), "Alegeti tipul competitiei", new { @class = "form-control" })
-    @Html.ValidationMessageFor(c => c.CompetitionTypeId, "", new { @class = " text-danger" })
-    <br />
-    <br />
-    <div class="form-group">
-        @Html.Label("Imagine competitie:", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-6">
-            <input type="file" name="ImageFile" required />
+        @Html.TextArea("Description", null, new
+        {
+            placeholder = "Introduceti informatii despre competitie",
+            @class = "form-control",
+            @rows = "10"
+        })
+
+        @Html.ValidationMessageFor(a => a.Description, "", new { @class = "text-danger" })
+        <br />
+        <br />
+        @Html.Label("CompetionType", "Tip Competitie:")
+        <br />
+        @Html.DropDownListFor(c => c.CompetitionTypeId, new SelectList(Model.CompetitionTypeList, "Value", "Text"), "Alegeti tipul competitiei", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.CompetitionTypeId, "", new { @class = " text-danger" })
+        <br />
+        <br />
+        <div class="form-group">
+            @Html.Label("Imagine competitie:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <input type="file" name="ImageFile" required />
+            </div>
+            @Html.ValidationMessageFor(c => c.ImagePath, "", new { @class = "text-danger" })
         </div>
-        @Html.ValidationMessageFor(c => c.ImagePath, "", new { @class = "text-danger" })
-    </div>
-    <br />
-    
-        
+        <br />
+
+
         <button class="btn btn-primary" type="submit">Adauga competitie</button>
-   
-    
-}
+    }
+</div>
