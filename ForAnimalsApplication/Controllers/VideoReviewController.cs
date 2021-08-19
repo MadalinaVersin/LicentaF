@@ -18,14 +18,20 @@ namespace ForAnimalsApplication.Controllers
             ViewBag.VideoReviews = reviews;
             return View();
         }
-
+        [Authorize(Roles = "User")]
         [HttpGet]
         public ActionResult New(int? id)
         {
-            VideoReview review = new VideoReview();
-            review.NoteList = GetAllNotes();
-            review.VideoCompetitorId = (int)id;
-            return View(review);
+            if (IsUserReviewOrOwner((int)id, User.Identity.GetUserId()) == false)
+            {
+                VideoReview review = new VideoReview();
+                review.NoteList = GetAllNotes();
+                review.VideoCompetitorId = (int)id;
+                return View(review);
+            } else
+            {
+                return RedirectToAction("Details", "VideoCompetitor", new { id = id });
+            }
         }
 
         [HttpPost]
@@ -176,6 +182,21 @@ namespace ForAnimalsApplication.Controllers
             sum = sum / 2;
             return sum;
 
+
+        }
+
+        public Boolean IsUserReviewOrOwner(int competitorId, string userId)
+        {
+            var userReview = db.VideoReviews.ToList().Where(u => u.VideoCompetitorId == competitorId && u.ApplicationUserID == userId);
+            VideoCompetitor competitor = db.VideoCompetitors.Find(competitorId);
+            if (userReview.Count() == 0 && competitor.ApplicationUserID != User.Identity.GetUserId())
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
 
         }
     }

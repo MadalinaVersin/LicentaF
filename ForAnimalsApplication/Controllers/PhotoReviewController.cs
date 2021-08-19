@@ -18,14 +18,21 @@ namespace ForAnimalsApplication.Controllers
             ViewBag.PhotoReviews = reviews;
             return View();
         }
-
+        [Authorize(Roles = "User")]
         [HttpGet]
         public ActionResult New(int? id)
         {
-            PhotoReview review = new PhotoReview();
-            review.NoteList = GetAllNotes();
-            review.PhotoCompetitorId = (int)id;
-            return View(review);
+            if (IsUserReview((int)id, User.Identity.GetUserId()) == false)
+            { 
+                PhotoReview review = new PhotoReview();
+                review.NoteList = GetAllNotes();
+                review.PhotoCompetitorId = (int)id;
+                return View(review);
+            }
+            else
+            {
+                return RedirectToAction("Details", "PhotoCompetitor", new { id = id });
+            }
         }
 
         [HttpPost]
@@ -65,10 +72,10 @@ namespace ForAnimalsApplication.Controllers
                     return View(review);
                 }
 
-                return HttpNotFound("Couldn't find the review you are searching for...");
+                return HttpNotFound("Nu se poate gasi recenzia cautata!");
             }
 
-            return HttpNotFound("Parameter is missing...");
+            return HttpNotFound("Lipseste paramestrul!");
         }
 
         [HttpGet]
@@ -176,6 +183,21 @@ namespace ForAnimalsApplication.Controllers
             sum = sum / 2;
             return sum;
 
+
+        }
+
+        public Boolean IsUserReview(int competitorId, string userId)
+        {
+            var userReview = db.PhotoReviews.ToList().Where(u => u.PhotoCompetitorId == competitorId && u.ApplicationUserID == userId);
+            PhotoCompetitor competitor = db.PhotoCompetitors.Find(competitorId);
+            if (userReview.Count() == 0 && competitor.ApplicationUserID != User.Identity.GetUserId())
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
 
         }
     }

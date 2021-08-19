@@ -1,111 +1,120 @@
 ﻿@model ForAnimalsApplication.Models.Competition
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Details";
     var emptySummaryMsgVar = "This animal has no details";
 }
-<div class="container">
-    @using (Html.BeginForm(actionName: "Index", controllerName: "Competition", method: FormMethod.Get))
-    {
-        <button style="margin-right:5px" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
-    }
-</div>
+
+@if (User.IsInRole("Jury"))
+{
+    <div class="container">
+        @using (Html.BeginForm(actionName: "Index", controllerName: "Evaluation", method: FormMethod.Get))
+        {
+            <button style="margin-right:5px" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
+        }
+    </div>
+}
+else
+{
+    <div class="container">
+        @using (Html.BeginForm(actionName: "Index", controllerName: "Competition", method: FormMethod.Get))
+        {
+            <button style="margin-right:5px" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
+        }
+    </div>
+}
 <div class="container">
     <div class="panel panel-default" style="margin-top:50px">
         <div class="panel-body">
-           <div style="background-image: url('../../Content/Image/Pt details.jpg');">
-          @*  <div class="compBackground">
-                <div style="height:100px">
+            <div style="background-image: url('../../Content/Image/Pt details.jpg');">
+                @*  <div class="compBackground">
+                        <div style="height:100px">
+                        </div>
+                    </div>*@
+                <br />
+                <br />
+                <h1 style="text-align:center;font-weight: bold;">@Model.CompetitionName</h1>
+
+                <div class="container">
+                    <span style="margin-left:43%;font-weight: bold; font-size:18px;background:#ffeecc;">Tip competitie: @Model.CompetitionType.Name</span>
                 </div>
-            </div>*@
-            <br />
-            <br />
+                <br />
+                <div style="float:left; height:35px; position:absolute; align-content:center;font-weight: bold;"> <p style="font-size:20px; align-items:center;">Data Start:@Model.StartDate</p></div>
+                <div style="float:right; height:35px;"><p style="font-size:20px;font-weight: bold;">Data Sfarsit:@Model.EndDate</p></div>
 
+                <br />
+                <br />
 
-            <h1 style="text-align:center;font-weight: bold;">@Model.CompetitionName</h1>
+                @if (Model.Description.IsEmpty())
+                {
+                    <p>@emptySummaryMsgVar</p>
 
-            <div class="container">
-                <span style="margin-left:43%;font-weight: bold; font-size:18px;background:#ffeecc;">Tip competitie: @Model.CompetitionType.Name</span>
+                }
+                else
+                {
+                    <p style="font-weight: bold;">@Model.Description</p>
+                }
+                <br />
+
+                @if (Model.EndDate < DateTime.Now)
+                {
+
+                    <p style="color:orangered;">Competitia s-a incheiat!</p>
+                    if (Model.Evaluated == true)
+                    {
+                        using (Html.BeginForm(actionName: "ShowTheWinner", controllerName: "Evaluation", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
+                        {
+                            <button class="button2" type="submit">Vezi castigatorul</button>
+                        }
+                    }
+                    else
+                    {
+                        <p style="color:orange">Competitia nu a fost evaluata inca!</p>
+                    }
+
+                }
+                else
+                {
+                    if (Model.CompetitionType.Name == "Photo")
+                    {
+                        using (Html.BeginForm(actionName: "New", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
+                        {
+                            <button style="margin-bottom:5px;" class="button2" type="submit">
+                                Competitor Nou
+                                <img class="plusImg" src="~/Content/Image/icon-plus.png" />
+                            </button>
+                        }
+                    }
+                    else
+                    {
+
+                        using (Html.BeginForm(actionName: "New", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
+                        {
+                            <button style="margin-bottom:5px;" class="button2" type="submit">
+                                Competitor Nou
+                                <img class="plusImg" src="~/Content/Image/icon-plus.png" />
+                            </button>}
+                    }
+                }
+
+                @using (Html.BeginForm(actionName: "AboutOneCompetition", controllerName: "Statistics", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
+                {
+                    <button style="float:right; border-radius:12px; height:40px;" class="button3" type="submit">
+                        Statistici competitii
+                        <img class="statisticsImg" src="~/Content/Image/STATISTICS.png" />
+                    </button>
+                }
             </div>
-            <br />
-            <div style="float:left; height:35px; position:absolute; align-content:center;font-weight: bold;"> <p style="font-size:20px; align-items:center;">Data Start:@Model.StartDate</p></div>
-            <div style="float:right; height:35px;"><p style="font-size:20px;font-weight: bold;">Data Sfarsit:@Model.EndDate</p></div>
-
-            <br />
-            <br />
-
-            @if (Model.Description.IsEmpty())
-            {
-                <p>@emptySummaryMsgVar</p>
-
-            }
-            else
-            {
-                <p style="font-weight: bold;">@Model.Description</p>
-            }
-
-
-
-            <br />
-
-            @if (Model.EndDate < DateTime.Now)
-            {
-
-                <p style="color:orangered;">Competitia s-a incheiat!</p>
-                if (Model.Evaluated == true)
-                {
-                    using (Html.BeginForm(actionName: "ShowTheWinner", controllerName: "Evaluation", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
-                    {
-                        <button class="button2" type="submit">Vezi castigatorul</button>
-                    }
-                }
-                else
-                {
-                    <p style="color:orange">Competitia nu a fost evaluata inca!</p>
-                }
-
-            }
-            else
-            {
-                if (Model.CompetitionType.Name == "Photo")
-                {
-                    using (Html.BeginForm(actionName: "New", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
-                    {
-                        <button style="margin-bottom:5px;" class="button2" type="submit">
-                            Competitor Nou
-                            <img class="plusImg" src="~/Content/Image/icon-plus.png" />
-                        </button>
-                    }
-                }
-                else
-                {
-
-                    using (Html.BeginForm(actionName: "New", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
-                    {
-                        <button style="margin-bottom:5px;" class="button2" type="submit">
-                            Competitor Nou
-                            <img class="plusImg" src="~/Content/Image/icon-plus.png" />
-                        </button>}
-                }
-            }
-
-            @using (Html.BeginForm(actionName: "AboutOneCompetition", controllerName: "Statistics", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
-            {
-                <button style="float:right; border-radius:12px; height:40px;" class="button3" type="submit">
-                    Statistici competitii
-                    <img class="statisticsImg" src="~/Content/Image/STATISTICS.png" />
-                </button>
-            }
-        </div>
             <br />
         </div>
     </div>
 </div>
-        <div class="container">
-            @if (Model.CompetitionType.Name == "Photo")
-            {     <div class="grid-container-competitors">
-                @foreach (var competitor in ViewBag.PhotoCompetitors)
-                {
-                      <div class="grid-item-competitors">
+<div class="container">
+    @if (Model.CompetitionType.Name == "Photo")
+    {<div class="grid-container-competitors">
+            @foreach (var competitor in ViewBag.PhotoCompetitors)
+            {
+                <div class="grid-item-competitors">
                     <div class="panel panel-default">
                         <div class="panel-body">
 
@@ -114,57 +123,63 @@
                             <br />
                             @using (Html.BeginForm(actionName: "Details", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.PhotoCompetitorId }))
                             {
-                                <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Details</button>
+                                <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Detalii</button>
                             }
-
-                            @using (Html.BeginForm(actionName: "Edit", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.PhotoCompetitorId }))
+                            @if (competitor.ApplicationUser.UserName == User.Identity.GetUserName())
                             {
-                                <button style="margin-right:5px" class="btn btn-primary col-lg-2" type="submit">Edit</button>
+                                using (Html.BeginForm(actionName: "Edit", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.PhotoCompetitorId }))
+                                {
+                                    <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Editeaza</button>
+                                }
+                                using (Html.BeginForm(actionName: "Delete", controllerName: "PhotoCompetitor", method: FormMethod.Post, routeValues: new { id = competitor.PhotoCompetitorId }))
+                                {
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Sterge</button>
+                                }
                             }
-                            @using (Html.BeginForm(actionName: "Delete", controllerName: "PhotoCompetitor", method: FormMethod.Post, routeValues: new { id = competitor.PhotoCompetitorId }))
-                            {
-                                @Html.HttpMethodOverride(HttpVerbs.Delete)
-                                <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Delete</button>
-                            }
-                           
 
                         </div>
                     </div>
-                          </div>
-                }
-            </div>
-            }
-            else {
-                <div class="grid-container-competitors">
-                @foreach (var competitor in ViewBag.VideoCompetitors)
-                {<div class="grid-item-competitors">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                                <div class="video-frame">
-                                    <video style="width:100%; height:auto;" controls>
-                                        <source src="@Url.Content(@competitor.Vpath)" type="video/mp4" />
-                                    </video>
-                                    </div>
-                             
-                           
-                            @using (Html.BeginForm(actionName: "Details", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.VideoCompetitorId }))
-                            {
-                                <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Details</button>
-                            }
-                            @using (Html.BeginForm(actionName: "Edit", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.VideoCompetitorId }))
-                            {
-                                <button style="margin-right:5px" class="btn btn-primary col-lg-2" type="submit">Edit</button>
-                            }
-                            @using (Html.BeginForm(actionName: "Delete", controllerName: "VideoCompetitor", method: FormMethod.Post, routeValues: new { id = competitor.VideoCompetitorId }))
-                            {
-                                @Html.HttpMethodOverride(HttpVerbs.Delete)
-                                <button style="margin-right:5px"class="btn btn-primary col-lg-3" type="submit">Delete</button>
-                            }
-                            
-                        </div>
-                    </div>
-                    </div>
-                }
-            </div>
+                </div>
             }
         </div>
+    }
+    else
+    {
+        <div class="grid-container-competitors">
+            @foreach (var competitor in ViewBag.VideoCompetitors)
+            {<div class="grid-item-competitors">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="video-frame">
+                                <video style="width:100%; height:auto;" controls>
+                                    <source src="@Url.Content(@competitor.Vpath)" type="video/mp4" />
+                                </video>
+                            </div>
+
+
+
+                            @using (Html.BeginForm(actionName: "Details", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.VideoCompetitorId }))
+                            {
+                                <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Detalii</button>
+                            }
+                            @if (competitor.ApplicationUser.UserName == User.Identity.GetUserName())
+                            {
+                                using (Html.BeginForm(actionName: "Edit", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.VideoCompetitorId }))
+                                {
+                                    <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Editeaza</button>
+                                }
+                                using (Html.BeginForm(actionName: "Delete", controllerName: "VideoCompetitor", method: FormMethod.Post, routeValues: new { id = competitor.VideoCompetitorId }))
+                                {
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Sterge</button>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

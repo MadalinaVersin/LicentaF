@@ -122,14 +122,16 @@ namespace ForAnimalsApplication.Controllers
                     {
                         List<PhotoCompetitor> photoCompetitors = db.PhotoCompetitors.Where(u => u.CompetitionId == id && u.Winner == true).ToList();
                         ViewBag.PhotoCompetitors = photoCompetitors;
+                        ViewBag.Competition = competition;
    
-                        return View();
+                        return View(competition);
                     }
                     else if (competition.CompetitionType.Name == "Video")
                     {
                         List<VideoCompetitor> videoCompetitors = db.VideoCompetitors.Where(u => u.CompetitionId == id && u.Winner == true).ToList();
                         ViewBag.VideoCompetitors = videoCompetitors;
-                        return View();
+                        ViewBag.Competition = competition;
+                        return View(competition);
                     }
                 }
                 return HttpNotFound("Nu exista competitia cu id-ul:" + id.ToString());

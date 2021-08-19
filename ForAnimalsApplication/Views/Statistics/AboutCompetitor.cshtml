@@ -1,4 +1,5 @@
-﻿<html>
+﻿
+<html>
 <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -63,6 +64,15 @@
     </script>
 </head>
 <body>
+    @if (ViewBag.CompetitorType == "Photo")
+    {
+        using (Html.BeginForm(actionName: "Details", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = ViewBag.CompetitorId}))
+        {
+        <button style="margin-bottom:10px" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
+        }
+    }
+    <br />
+    <br />
     <h1 class="text-center"> Statistici despre competitor</h1>
     <br />
     <div cls="row">
@@ -91,7 +101,7 @@
                                     <th>Nume Competitie</th>
                                     <th>Tip Competitie</th>
                                     <th>Nota Comisie</th>
-                                    <th>Noata Finala</th>
+                                    <th>Nota Finala</th>
                                     <th>Status competitie</th>
                                 </tr>
                             </thead>

@@ -19,6 +19,7 @@ namespace ForAnimalsApplication.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult New()
         {
@@ -57,6 +58,7 @@ namespace ForAnimalsApplication.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Edit(int? id)
         {

@@ -1,10 +1,14 @@
-﻿
+﻿@model ForAnimalsApplication.Models.Competition
 @{
     ViewBag.Title = "Castigatorul";
-    
+
+}
+@using (Html.BeginForm(actionName: "Details", controllerName: "Competition", method: FormMethod.Get, routeValues: new { id = Model.CompetitionId }))
+{
+    <button style="margin-bottom:10px; margin-left:10px;" class="buttonBack" type="submit"><img style="width:20px; height:20px;" src="~/Content/Image/544-5440422_back-arrow-icon-transparent-png-clipart-free-download.png" />Inapoi</button>
 }
 <img src="~/Content/Image/winner.jpeg" style="width:150px; height:200px; float:right; margin-top:20px;" />
-<h2 class="text-center" style="font-size:30px; font-weight:bold; margin-top:50px">@ViewBag.Title</h2>
+<h2 class="text-center" style="font-size:30px; font-weight:bold; margin-top:50px">Castigatorul competitiei "@ViewBag.Competition.CompetitionName"</h2>
 @if (ViewBag.PhotoCompetitors == null && ViewBag.VideoCompetitors == null)
 {
     <p>Nu a fost evaluata competitia inca!</p>
@@ -26,9 +30,9 @@ else if (ViewBag.PhotoCompetitors != null)
                         @Html.Label("Descrition", "Descriere: ")
                         <br />
 
-                      
-                            <p>@competitor.Description</p>
-                       
+
+                        <p>@competitor.Description</p>
+
                         @Html.Label("Username stapan:")
                         <p>@competitor.ApplicationUser.UserName</p>
                     </div>
@@ -36,45 +40,45 @@ else if (ViewBag.PhotoCompetitors != null)
                         <img src="@Url.Content(competitor.ImagePath)" alt="Sample Image" width="300" height="350" align="right" />
                     </div>
                 </div>
-                </div>
             </div>
+        </div>
 
-                }
-                }
+    }
+}
 else
-                {
-    foreach(var competitor in ViewBag.VideoCompetitors)
+{
+    foreach (var competitor in ViewBag.VideoCompetitors)
     {
-    <div class="panel panel-default" style="margin-top:150px">
-     <div class="panel-body">
-        <h2 align="center" style="font-weight: bold; background:#29293d ; color:white;">@competitor.Name</h2>
-        <div class="grid-container">
-            <div class="grid-item-details-competitor">
-                @Html.Label("Age", "Varsta competitor:")
-                <p>@competitor.Age</p>
-                @Html.Label("Gender", "Sex competitor:")
-                <p>@competitor.Gender</p>
+        <div class="panel panel-default" style="margin-top:150px">
+            <div class="panel-body">
+                <h2 align="center" style="font-weight: bold; background:#29293d ; color:white;">@competitor.Name</h2>
+                <div class="grid-container">
+                    <div class="grid-item-details-competitor">
+                        @Html.Label("Age", "Varsta competitor:")
+                        <p>@competitor.Age</p>
+                        @Html.Label("Gender", "Sex competitor:")
+                        <p>@competitor.Gender</p>
 
-                @Html.Label("Descrition", "Descriere: ")
-                <br />
+                        @Html.Label("Descrition", "Descriere: ")
+                        <br />
 
-                    <p>@competitor.Description</p>
-              
+                        <p>@competitor.Description</p>
 
-                @Html.Label("Username stapan:")
-                <p>@competitor.ApplicationUser.UserName</p>
-            </div>
 
-            <div class="grid-item-details-competitor">
-                <div class="video-frame">
-                    <video style="width:100%; height:auto;" controls>
-                        <source src="@Url.Content(competitor.Vpath)" type="video/mp4" />
-                    </video>
+                        @Html.Label("Username stapan:")
+                        <p>@competitor.ApplicationUser.UserName</p>
+                    </div>
+
+                    <div class="grid-item-details-competitor">
+                        <div class="video-frame">
+                            <video style="width:100%; height:auto;" controls>
+                                <source src="@Url.Content(competitor.Vpath)" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-}
+    }
 }
 

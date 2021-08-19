@@ -8,19 +8,20 @@
 {
     @Html.AntiForgeryToken()
     <br />
-    <div class="container">
+    <div class="container" style="margin-left:17%">
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            
+
                             <div class="col">
                                 <center>
                                     <img width="100px" src="~/Content/Image/user-1648810-1401302.png" />
                                 </center>
                             </div>
-                            
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
                             <div class="row">
                                 <div class="col">
                                     <center>
@@ -42,7 +43,7 @@
                                         <label>Email</label>
                                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                                    
+
                                     </div>
                                 </center>
                             </div>
@@ -52,38 +53,38 @@
                                         <label>Parola</label>
                                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                                       
+
                                     </div>
                                 </center>
                             </div>
                             @*<div class="form-group">
-                                    <center>
-                                        <div class="checkbox">
-                                            @Html.CheckBoxFor(m => m.RememberMe)
-                                            @Html.LabelFor(m => m.RememberMe)
-                                        </div>
-                                    </center>
-                            </div>*@
+                <center>
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
+                    </div>
+                </center>
+        </div>*@
                             <br />
 
                             <div class="form-group">
                                 <center>
-                                     <button type="submit" class="btn btn-success">Conecteaza</button>
+                                    <button type="submit" class="btn btn-success">Conecteaza</button>
                                 </center>
-                               
+
                             </div>
-                            
+
                             <center>
-                            <p>
-                                @Html.ActionLink("Inregistreaza ca utilizator nou", "Register")
-                            </p>
+                                <p>
+                                    @Html.ActionLink("Inregistreaza ca utilizator nou", "Register")
+                                </p>
                             </center>
                             @* Enable this once you have account confirmation enabled for password reset functionality
         <p>
             @Html.ActionLink("Forgot your password?", "ForgotPassword")
         </p>*@
-                           
-                           
+
+
                         </div>
                         
                     </div>

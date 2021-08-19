@@ -69,15 +69,29 @@ namespace ForAnimalsApplication.Controllers
         }
 
 
-        public ActionResult AboutCompetitor(string id)
+        public ActionResult AboutCompetitorP(int id)
         {
-            ViewBag.Microchip = id;
+
+            PhotoCompetitor competitor = db.PhotoCompetitors.Find(id);
+            ViewBag.CompetitorId = id;
+            ViewBag.Microchip = competitor.MicrochipNumber ;
             ViewBag.VideoCompetitors = db.VideoCompetitors.Include("Competition").ToList();
             ViewBag.PhotoCompetitors = db.PhotoCompetitors.Include("Competition").ToList();
 
             return View();
         }
 
+        public ActionResult AboutCompetitorV(int id)
+        {
+
+            VideoCompetitor competitor = db.VideoCompetitors.Find(id);
+            ViewBag.CompetitorId = id;
+            ViewBag.Microchip = competitor.MicrochipNumber;
+            ViewBag.VideoCompetitors = db.VideoCompetitors.Include("Competition").ToList();
+            ViewBag.PhotoCompetitors = db.PhotoCompetitors.Include("Competition").ToList();
+
+            return View();
+        }
         public JsonResult GetReviews(string id)
         {
             List<object> chartData = new List<object>();

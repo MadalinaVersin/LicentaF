@@ -424,6 +424,8 @@
     <Content Include="Views\PhotoCompetitor\GiveJuryNote.cshtml" />
     <Content Include="Views\VideoCompetitor\GiveJuryNote.cshtml" />
     <Content Include="Views\Evaluation\ShowTheWinner.cshtml" />
+    <Content Include="Views\Statistics\AboutCompetitorP.cshtml" />
+    <Content Include="Views\Statistics\AboutCompetitorV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

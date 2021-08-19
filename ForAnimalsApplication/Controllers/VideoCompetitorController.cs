@@ -31,7 +31,7 @@ namespace ForAnimalsApplication.Controllers
                 competitor.CompetitionId = (int)id;
                 return View(competitor);
             }
-            return HttpNotFound("Missing animal id parameter!");
+            return HttpNotFound("Lipseste id-ul competitorului!");
         }
 
         [HttpPost]
@@ -68,6 +68,8 @@ namespace ForAnimalsApplication.Controllers
             catch (Exception e)
             {
                 var msg = e.Message;
+                competitorReq.AgeList = GetAllAges();
+                competitorReq.GenderList = GetAllGenders();
                 return View(competitorReq);
             }
 
@@ -83,11 +85,11 @@ namespace ForAnimalsApplication.Controllers
                 competitor.GenderList = GetAllGenders();
                 if (competitor == null)
                 {
-                    return HttpNotFound("Couldn't find the competitor with id " + id.ToString() + "!");
+                    return HttpNotFound("Nu poate fi gasit competitorul cu id-ul" + id.ToString() + "!");
                 }
                 return View(competitor);
             }
-            return HttpNotFound("Missing competitor id parameter!");
+            return HttpNotFound("Lipseste id-ul competitorului!");
         }
 
         [HttpPut]
@@ -136,7 +138,7 @@ namespace ForAnimalsApplication.Controllers
                         }
                         db.SaveChanges();
                     }
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", "Competition", new { id = competitorReq.CompetitionId });
                 }
                 return View(competitorReq);
             }
@@ -153,13 +155,24 @@ namespace ForAnimalsApplication.Controllers
                 VideoCompetitor competitor = db.VideoCompetitors.Find(id);
                 if (competitor != null)
                 {
-                    ViewBag.NewReview = IsUserReview((int)id, User.Identity.GetUserId());
+                    ViewBag.ReviewedOrOwner = IsUserReviewOrOwner((int)id, User.Identity.GetUserId());
+                    if (IsUserReviewOrOwner((int)id, User.Identity.GetUserId()) == true)
+                    {
+                        if (competitor.ApplicationUser.Id == User.Identity.GetUserId())
+                        {
+                            ViewBag.MessageOwner = "Sunteti stapanul acestui animal.";
+                        }
+                       /* else
+                        {
+                            ViewBag.Message = "Ati dat deja o recenzie pentru acest competitor!";
+                        }*/
+                    }
                     ViewBag.VideoReviews = db.VideoReviews.Include("ApplicationUser").Where(u => u.VideoCompetitorId == id);
                     return View(competitor);
                 }
-                return HttpNotFound("Couldn't find the animal with id " + id.ToString() + "!");
+                return HttpNotFound("Nu poate fi gasit competitorul cu id-ul " + id.ToString() + "!");
             }
-            return HttpNotFound("Missing animal id parameter!");
+            return HttpNotFound("Id-ul competitorului lipseste!");
         }
 
         [HttpDelete]
@@ -234,16 +247,17 @@ namespace ForAnimalsApplication.Controllers
         }
 
 
-        public Boolean IsUserReview(int competitorId, string userId)
+        public Boolean IsUserReviewOrOwner(int competitorId, string userId)
         {
             var userReview = db.VideoReviews.ToList().Where(u => u.VideoCompetitorId == competitorId && u.ApplicationUserID == userId);
-            if (userReview.Count() == 0)
+            VideoCompetitor competitor = db.VideoCompetitors.Find(competitorId);
+            if (userReview.Count() == 0 && competitor.ApplicationUserID != User.Identity.GetUserId())
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
 
         }

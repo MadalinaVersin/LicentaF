@@ -20,6 +20,7 @@ namespace ForAnimalsApplication.Controllers
             return View();
         }
 
+        [Authorize(Roles = "User, Block")]
         [HttpGet]
         public ActionResult New(int? id)
         {
@@ -31,7 +32,7 @@ namespace ForAnimalsApplication.Controllers
                 competitor.CompetitionId = (int)id;
                 return View(competitor);
             }
-            return HttpNotFound("Missing animal id parameter!");
+            return HttpNotFound("Lipseste id-ul competitorului!");
         }
 
         [HttpPost]
@@ -82,11 +83,11 @@ namespace ForAnimalsApplication.Controllers
 
                 if (competitor == null)
                 {
-                    return HttpNotFound("Couldn't find the competitor with id " + id.ToString() + "!");
+                    return HttpNotFound("Nu se poate gasi competitorul cu id-ul " + id.ToString() + "!");
                 }
                 return View(competitor);
             }
-            return HttpNotFound("Missing competitor id parameter!");
+            return HttpNotFound("Lipseste id-ul competitorului!");
         }
 
         [HttpPut]
@@ -149,13 +150,22 @@ namespace ForAnimalsApplication.Controllers
                 PhotoCompetitor competitor = db.PhotoCompetitors.Find(id);
                 if (competitor != null)
                 {
-                    ViewBag.NewReview = IsUserReview((int)id, User.Identity.GetUserId());
+                    ViewBag.ReviewdOrOwner = IsUserReview((int)id, User.Identity.GetUserId());
+                    if(IsUserReview((int)id, User.Identity.GetUserId()) == true)
+                    {
+                        if(competitor.ApplicationUser.Id == User.Identity.GetUserId())
+                        {
+                            ViewBag.MessageOwner = "Sunteti stapanul acestui animal.";
+                        }/* else {
+                            ViewBag.Message = "Ati dat deja o recenzie pentru acest competitor!";
+                        }*/
+                    }
                     ViewBag.PhotoReviews = db.PhotoReviews.Include("ApplicationUser").Where(u => u.PhotoCompetitorId == id);
                     return View(competitor);
                 }
-                return HttpNotFound("Couldn't find the competitor with id " + id.ToString() + "!");
+                return HttpNotFound("Nu poate fi gasit competitorul cu id-ul " + id.ToString() + "!");
             }
-            return HttpNotFound("Missing competitor id parameter!");
+            return HttpNotFound("Id-ul competitorului lipseste!");
         }
 
         [HttpDelete]
@@ -231,13 +241,14 @@ namespace ForAnimalsApplication.Controllers
         public Boolean IsUserReview(int competitorId, string userId)
         {
             var userReview = db.PhotoReviews.ToList().Where(u => u.PhotoCompetitorId == competitorId && u.ApplicationUserID == userId);
-            if(userReview.Count() == 0)
+            PhotoCompetitor competitor = db.PhotoCompetitors.Find(competitorId);
+            if (userReview.Count() == 0 && competitor.ApplicationUserID != User.Identity.GetUserId())
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
 
         }
