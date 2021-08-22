@@ -14,7 +14,7 @@ namespace ForAnimalsApplication.Controllers
         // GET: Competition
         public ActionResult Index()
         {
-            List<Competition> competitions = db.Competitions.Include("CompetitionType").ToList();
+            List<Competition> competitions = db.Competitions.Include("CompetitionType").OrderByDescending(u => u.StartDate).ToList();
             ViewBag.Competitions = competitions;
             return View();
         }
