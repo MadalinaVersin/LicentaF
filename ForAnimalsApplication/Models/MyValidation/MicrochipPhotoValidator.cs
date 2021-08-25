@@ -50,7 +50,7 @@ namespace ForAnimalsApplication.Models.MyValidation
             }
             if (BeUniquePerCompetition(microchip, compId, competitorId) == false)
             {
-                return new ValidationResult("Nu se poate sa concureze un animal de mai multe ori la aceeasi competitie!");
+                return new ValidationResult("Un concurent nu poate participa de mai multe ori la aceeasi competitie!");
             }
 
             return ValidationResult.Success;

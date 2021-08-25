@@ -151,7 +151,7 @@
                         {
                             <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Details</button>
                         }*@
-                    @if (review.ApplicationUser.UserName == User.Identity.GetUserName())
+                    @if (review.ApplicationUser.UserName == User.Identity.GetUserName() && ViewBag.Competition.EndDate > DateTime.Now)
                     {
                         using (Html.BeginForm(actionName: "Edit", controllerName: "VideoReview", method: FormMethod.Get, routeValues: new { id = review.VideoReviewId }))
                         {

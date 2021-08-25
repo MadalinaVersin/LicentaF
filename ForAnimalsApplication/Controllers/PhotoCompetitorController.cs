@@ -38,6 +38,8 @@ namespace ForAnimalsApplication.Controllers
         [HttpPost]
         public ActionResult New(PhotoCompetitor competitorReq)
         {
+            competitorReq.AgeList = GetAllAges();
+            competitorReq.GenderList = GetAllGenders();
             try
             {
                 if (ModelState.IsValid)
@@ -57,16 +59,12 @@ namespace ForAnimalsApplication.Controllers
                     return RedirectToAction("Details", "Competition", new { id = competitorReq.CompetitionId });
 
                 }
-                competitorReq.AgeList = GetAllAges();
-                competitorReq.GenderList = GetAllGenders();
                 
                 return View(competitorReq);
             }
             catch (Exception e)
             {
                 var msg = e.Message;
-                competitorReq.AgeList = GetAllAges();
-                competitorReq.GenderList = GetAllGenders();
                 return View(competitorReq);
             }
 
@@ -95,7 +93,7 @@ namespace ForAnimalsApplication.Controllers
         {
             competitorReq.AgeList = GetAllAges();
             competitorReq.GenderList = GetAllGenders();
-            // preluam competitorul  pe care vrem sa o modificam din baza de date
+            // preluam competitorul  pe care vrem sa il modificam din baza de date
             PhotoCompetitor competitor = db.PhotoCompetitors.Find(id);
 
             try
@@ -112,9 +110,6 @@ namespace ForAnimalsApplication.Controllers
                     competitorReq.ImageFile.SaveAs(fileName);
 
                 }
-
-
-
 
                 if (ModelState.IsValid)
                 {
@@ -148,10 +143,11 @@ namespace ForAnimalsApplication.Controllers
             if (id.HasValue)
             {
                 PhotoCompetitor competitor = db.PhotoCompetitors.Find(id);
+                ViewBag.Competition = db.Competitions.Find(competitor.CompetitionId);
                 if (competitor != null)
                 {
-                    ViewBag.ReviewdOrOwner = IsUserReview((int)id, User.Identity.GetUserId());
-                    if(IsUserReview((int)id, User.Identity.GetUserId()) == true)
+                    ViewBag.ReviewdOrOwner = IsUserReview(competitor.PhotoCompetitorId, competitor.ApplicationUserID);
+                    if(IsUserReview(competitor.PhotoCompetitorId, competitor.ApplicationUserID) == true)
                     {
                         if(competitor.ApplicationUser.Id == User.Identity.GetUserId())
                         {
@@ -178,7 +174,7 @@ namespace ForAnimalsApplication.Controllers
                 {
                     db.PhotoCompetitors.Remove(photoCompetitor);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", "Competition", new { id = photoCompetitor.CompetitionId });
                 }
                 return HttpNotFound("Nu se poate gasi competitorul cu id-ul:" + id.ToString());
             }
@@ -206,7 +202,7 @@ namespace ForAnimalsApplication.Controllers
         {
             competitorReq.AgeList = GetAllAges();
             competitorReq.GenderList = GetAllGenders();
-            // preluam competitorul  pe care vrem sa o modificam din baza de date
+            // preluam competitorul  pe care vrem sa il  modificam din baza de date
             PhotoCompetitor competitor = db.PhotoCompetitors.Find(id);
 
             try
@@ -226,7 +222,7 @@ namespace ForAnimalsApplication.Controllers
                         db.SaveChanges();
                         competitor.FinalNote = CalculateFinalNote(id);
                         db.SaveChanges();
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Details", "PhotoCompetitor", new { id = id});
                     }
 
                 }
@@ -240,9 +236,9 @@ namespace ForAnimalsApplication.Controllers
 
         public Boolean IsUserReview(int competitorId, string userId)
         {
-            var userReview = db.PhotoReviews.ToList().Where(u => u.PhotoCompetitorId == competitorId && u.ApplicationUserID == userId);
-            PhotoCompetitor competitor = db.PhotoCompetitors.Find(competitorId);
-            if (userReview.Count() == 0 && competitor.ApplicationUserID != User.Identity.GetUserId())
+            var userReview = db.PhotoReviews.ToList().Where(u => u.PhotoCompetitorId == competitorId && u.ApplicationUserID == User.Identity.GetUserId());
+      
+            if (userReview.Count() == 0 && userId!= User.Identity.GetUserId())
             {
                 return false;
             }

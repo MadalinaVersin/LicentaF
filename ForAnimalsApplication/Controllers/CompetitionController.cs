@@ -68,11 +68,11 @@ namespace ForAnimalsApplication.Controllers
                 competition.CompetitionTypeList = GetAllCompetitionType();
                 if (competition == null)
                 {
-                    return HttpNotFound("Coludn't find the competition with id " + id.ToString() + "!");
+                    return HttpNotFound("Nu se poate gasi competitia cu id-ul " + id.ToString() + "!");
                 }
                 return View(competition);
             }
-            return HttpNotFound("Missing competition id parameter!");
+            return HttpNotFound("Lipseste id-ul competitiei!");
         }
 
         [HttpPut]
@@ -134,7 +134,7 @@ namespace ForAnimalsApplication.Controllers
             {
                 Competition competition = db.Competitions.Find(id);
                 CompetitionType compType = db.CompetitionTypes.Find(competition.CompetitionTypeId);
-                competition.CompetitionType = compType;
+                /*competition.CompetitionType = compType;*/
                 if (competition != null)
                 {
                     if (compType.Name == "Photo")
@@ -147,9 +147,9 @@ namespace ForAnimalsApplication.Controllers
                     }
                     return View(competition);
                 }
-                return HttpNotFound("Couldn't find the animal with id " + id.ToString() + "!");
+                return HttpNotFound("Nu se poate gasi competitia cu id-ul " + id.ToString() + "!");
             }
-            return HttpNotFound("Missing animal id parameter!");
+            return HttpNotFound("Lipseste id-ul competitiei!");
         }
 
         [HttpDelete]

@@ -19,7 +19,7 @@ namespace ForAnimalsApplication.Controllers
             ViewBag.VideoCompetitors = competitors;
             return View();
         }
-
+        [Authorize(Roles = "User, Block")]
         [HttpGet]
         public ActionResult New(int? id)
         {
@@ -37,6 +37,8 @@ namespace ForAnimalsApplication.Controllers
         [HttpPost]
         public ActionResult New(VideoCompetitor competitorReq)
         {
+            competitorReq.AgeList = GetAllAges();
+            competitorReq.GenderList = GetAllGenders();
             try
             {
                 if (ModelState.IsValid)
@@ -61,15 +63,12 @@ namespace ForAnimalsApplication.Controllers
                     return RedirectToAction("Details", "Competition", new { id = competitorReq.CompetitionId });
 
                 }
-                competitorReq.AgeList = GetAllAges();
-                competitorReq.GenderList = GetAllGenders();
+               
                 return View(competitorReq);
             }
             catch (Exception e)
             {
                 var msg = e.Message;
-                competitorReq.AgeList = GetAllAges();
-                competitorReq.GenderList = GetAllGenders();
                 return View(competitorReq);
             }
 
@@ -102,10 +101,10 @@ namespace ForAnimalsApplication.Controllers
 
             try
             {
-                int updateImg = 0;
+                int updateVideo = 0;
                 if (competitorReq.VideoFile != null)
                 {
-                    updateImg = 1;
+                    updateVideo = 1;
 
                     string filename = Path.GetFileNameWithoutExtension(competitorReq.VideoFile.FileName);
                     if (competitorReq.VideoFile.ContentLength < 1048576000)
@@ -129,9 +128,7 @@ namespace ForAnimalsApplication.Controllers
                         competitor.Age = competitorReq.Age;
                         competitor.Gender = competitorReq.Gender;
                         competitor.Description = competitorReq.Description;
-                       /* competitor.Vpath = competitorReq.Vpath;
-                        competitor.Vname = competitorReq.Vname;*/
-                        if (updateImg == 1)
+                        if (updateVideo == 1)
                         {
                             competitor.Vname = competitorReq.Vname;
                             competitor.Vpath = competitorReq.Vpath;
@@ -153,10 +150,11 @@ namespace ForAnimalsApplication.Controllers
             if (id.HasValue)
             {
                 VideoCompetitor competitor = db.VideoCompetitors.Find(id);
+                ViewBag.Competition = db.Competitions.Find(competitor.CompetitionId);
                 if (competitor != null)
                 {
-                    ViewBag.ReviewedOrOwner = IsUserReviewOrOwner((int)id, User.Identity.GetUserId());
-                    if (IsUserReviewOrOwner((int)id, User.Identity.GetUserId()) == true)
+                    ViewBag.ReviewedOrOwner = IsUserReviewOrOwner((int)id, competitor.ApplicationUserID);
+                    if (IsUserReviewOrOwner((int)id, competitor.ApplicationUserID) == true)
                     {
                         if (competitor.ApplicationUser.Id == User.Identity.GetUserId())
                         {
@@ -185,7 +183,7 @@ namespace ForAnimalsApplication.Controllers
                 {
                     db.VideoCompetitors.Remove(videoCompetitor);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", "Competition", new { id = videoCompetitor.CompetitionId });
                 }
                 return HttpNotFound("Nu se poate gasi competitorul cu id-ul:" + id.ToString());
             }
@@ -234,8 +232,8 @@ namespace ForAnimalsApplication.Controllers
                         db.SaveChanges();
                         competitor.FinalNote = CalculateFinalNote(id);
                         db.SaveChanges();
-                        return RedirectToAction("Index");
                     }
+                    return RedirectToAction("Details", "VideoCompetitor", new { id = id });
 
                 }
                 return View(competitorReq);
@@ -249,9 +247,8 @@ namespace ForAnimalsApplication.Controllers
 
         public Boolean IsUserReviewOrOwner(int competitorId, string userId)
         {
-            var userReview = db.VideoReviews.ToList().Where(u => u.VideoCompetitorId == competitorId && u.ApplicationUserID == userId);
-            VideoCompetitor competitor = db.VideoCompetitors.Find(competitorId);
-            if (userReview.Count() == 0 && competitor.ApplicationUserID != User.Identity.GetUserId())
+            var userReview = db.VideoReviews.ToList().Where(u => u.VideoCompetitorId == competitorId && u.ApplicationUserID == User.Identity.GetUserId());
+            if (userReview.Count() == 0 && userId != User.Identity.GetUserId())
             {
                 return false;
             }

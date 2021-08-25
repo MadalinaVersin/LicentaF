@@ -22,17 +22,15 @@ namespace ForAnimalsApplication.Controllers
             Competition competition = db.Competitions.Include("CompetitionType").Where(u => u.CompetitionId == id).FirstOrDefault();
             if (competition.CompetitionType.Name == "Photo")
             {
-                var notEvaluatesF = db.PhotoCompetitors.ToList().Where(u => u.CompetitionId == id && u.JuryNote == 0);
-                if(notEvaluatesF.Count() != 0)
+                var notEvaluatesP = db.PhotoCompetitors.ToList().Where(u => u.CompetitionId == id && u.JuryNote == 0);
+                if(notEvaluatesP.Count() != 0)
                 {
                     ViewBag.IsOk = false;
-                    /*ViewBag.Message = "Trebuie sa evaluati toti concurentii!";*/
                     return View();
                 } else
                 {
                     CalculateWinnerP(id);
                     ViewBag.IsOk = true;
-                    /*ViewBag.Message = "Evaluare realizata cu succes!";*/
                     competition.Evaluated = true;
                     db.SaveChanges();
                     return View();
@@ -67,7 +65,7 @@ namespace ForAnimalsApplication.Controllers
             if (photoCompetitors.Count() > 0)
             {
                 double maxNote = photoCompetitors[0].FinalNote;
-                for (var i = 0; i < photoCompetitors.Count(); i++)
+                for (var i = 1; i < photoCompetitors.Count(); i++)
                 {
                     if (photoCompetitors[i].FinalNote > maxNote)
                     {
@@ -91,7 +89,7 @@ namespace ForAnimalsApplication.Controllers
             if (videoCompetitors.Count() > 0)
             {
                 double maxNote = videoCompetitors[0].FinalNote;
-                for (var i = 0; i < videoCompetitors.Count(); i++)
+                for (var i = 1; i < videoCompetitors.Count(); i++)
                 {
                     if (videoCompetitors[i].FinalNote > maxNote)
                     {

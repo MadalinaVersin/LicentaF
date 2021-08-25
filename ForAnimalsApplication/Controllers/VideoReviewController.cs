@@ -22,16 +22,12 @@ namespace ForAnimalsApplication.Controllers
         [HttpGet]
         public ActionResult New(int? id)
         {
-            if (IsUserReviewOrOwner((int)id, User.Identity.GetUserId()) == false)
-            {
+            
                 VideoReview review = new VideoReview();
                 review.NoteList = GetAllNotes();
                 review.VideoCompetitorId = (int)id;
                 return View(review);
-            } else
-            {
-                return RedirectToAction("Details", "VideoCompetitor", new { id = id });
-            }
+           
         }
 
         [HttpPost]
@@ -46,11 +42,7 @@ namespace ForAnimalsApplication.Controllers
                     reviewReq.ApplicationUserID = User.Identity.GetUserId();
                     db.VideoReviews.Add(reviewReq);
                     db.SaveChanges();
-
-                    VideoCompetitor competitor = db.VideoCompetitors.Find(reviewReq.VideoCompetitorId);
-                    competitor.FinalNote = CalculateFinalNote(reviewReq.VideoCompetitorId);
-                    db.SaveChanges();
-                    return RedirectToAction("Details", "VideoCompetitor", new { id = competitor.VideoCompetitorId });
+                    return RedirectToAction("Details", "VideoCompetitor", new { id =reviewReq.VideoCompetitorId });
                 }
                 
                 return View(reviewReq);
@@ -72,10 +64,10 @@ namespace ForAnimalsApplication.Controllers
                     return View(review);
                 }
 
-                return HttpNotFound("Couldn't find the review you are searching for...");
+                return HttpNotFound("Nu se poate gasi recenzia cu id-ul " + id.ToString() + " !");
             }
 
-            return HttpNotFound("Parameter is missing...");
+            return HttpNotFound("Lipseste id-ul recenziei!");
         }
 
         [HttpGet]
@@ -89,11 +81,11 @@ namespace ForAnimalsApplication.Controllers
 
                 if (review == null)
                 {
-                    return HttpNotFound("Couldn't find the review with id " + id.ToString() + "!");
+                    return HttpNotFound("Nu se poate gasi recenzia cu id-ul " + id.ToString() + "!");
                 }
                 return View(review);
             }
-            return HttpNotFound("Couldn't find the review with id " + id.ToString() + "!");
+            return HttpNotFound("Lipseste id-ul recenziei!");
         }
 
         [HttpPut]
@@ -112,13 +104,8 @@ namespace ForAnimalsApplication.Controllers
                         review.Note = reviewReq.Note;
                         review.ReviewDate = DateTime.Now;
                         db.SaveChanges();
-
-                        VideoCompetitor competitor = db.VideoCompetitors.Find(reviewReq.VideoCompetitorId);
-                        competitor.FinalNote = CalculateFinalNote(reviewReq.VideoCompetitorId);
-                        db.SaveChanges();
-                        return RedirectToAction("Details", "VideoCompetitor", new { id = competitor.VideoCompetitorId });
                     }
-                    return RedirectToAction("Details", "VideoCompetitor", new { id = reviewReq.VideoCompetitor.VideoCompetitorId });
+                    return RedirectToAction("Details", "VideoCompetitor", new { id = reviewReq.VideoCompetitorId });
                 }
                 return View(reviewReq);
             }
@@ -139,14 +126,11 @@ namespace ForAnimalsApplication.Controllers
                 {
                     db.VideoReviews.Remove(review);
                     db.SaveChanges();
-                    VideoCompetitor competitor = db.VideoCompetitors.Find(review.VideoCompetitorId);
-                    competitor.FinalNote = CalculateFinalNote(review.VideoCompetitorId);
-                    db.SaveChanges();
-                    return RedirectToAction("Details", "VideoCompetitor", new { id = competitor.VideoCompetitorId });
+                    return RedirectToAction("Details", "VideoCompetitor", new { id = review.VideoCompetitorId });
                 }
-                return HttpNotFound("Nu se poate gasi comentariul cu id-ul: " + id.ToString() + "!");
+                return HttpNotFound("Nu se poate gasi recenzia cu id-ul: " + id.ToString() + "!");
             }
-            return HttpNotFound("Id-ul comentariului lipseste!");
+            return HttpNotFound("Id-ul recenziei lipseste!");
         }
 
 
@@ -154,7 +138,7 @@ namespace ForAnimalsApplication.Controllers
         {
             var selectList = new List<SelectListItem>();
 
-            for (var i = 0; i < 5; i++)
+            for (var i = 1; i < 6; i++)
             {
                 selectList.Add(new SelectListItem
                 {
@@ -163,41 +147,6 @@ namespace ForAnimalsApplication.Controllers
                 });
             }
             return selectList;
-        }
-
-        public double CalculateFinalNote(int competitorId)
-        {
-            List<VideoReview> reviews = db.VideoReviews.Where(a => a.VideoCompetitorId == competitorId).ToList();
-            VideoCompetitor competitor = db.VideoCompetitors.Find(competitorId);
-            double sum = 0;
-            for (var i = 0; i < reviews.Count; i++)
-            {
-                sum = sum + reviews[i].Note;
-            }
-            if (reviews.Count != 0)
-            {
-                sum = sum / reviews.Count;
-            }
-            sum = sum + competitor.JuryNote;
-            sum = sum / 2;
-            return sum;
-
-
-        }
-
-        public Boolean IsUserReviewOrOwner(int competitorId, string userId)
-        {
-            var userReview = db.VideoReviews.ToList().Where(u => u.VideoCompetitorId == competitorId && u.ApplicationUserID == userId);
-            VideoCompetitor competitor = db.VideoCompetitors.Find(competitorId);
-            if (userReview.Count() == 0 && competitor.ApplicationUserID != User.Identity.GetUserId())
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
         }
     }
 }

@@ -26,7 +26,7 @@ namespace ForAnimalsApplication.Controllers
         {
             if (String.IsNullOrEmpty(id))
             {
-                return HttpNotFound("Missing the id parameter!");
+                return HttpNotFound("Lipseste id-ul contului!");
             }
             ApplicationUser user = db.Users
             .Include("Roles")
@@ -38,7 +38,7 @@ namespace ForAnimalsApplication.Controllers
                 return View(user);
             }
 
-            return HttpNotFound("Cloudn't find the user with given id!");
+            return HttpNotFound("Nu se poate gasi contul cu id-ul " + id.ToString() + " !");
         }
 
 
@@ -68,7 +68,7 @@ namespace ForAnimalsApplication.Controllers
                 {
                     db.Roles.Add(roleReq);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("DisplayRoles");
                 }
                 return View(roleReq);
             }

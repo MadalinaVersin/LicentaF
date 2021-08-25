@@ -51,7 +51,7 @@
                     <p>@Model.ApplicationUser.UserName</p>
                 </div>
                 <div class="grid-item-details-competitor">
-                    <img src="@Url.Content(Model.ImagePath)" alt="Sample Image" width="300" height="350" align="right" />
+                    <img src="@Url.Content(Model.ImagePath)" alt="Sample Image" width="350" height="300" align="right" />
                 </div>
             </div>
             @if (Model.Competition.EndDate < DateTime.Now)
@@ -151,7 +151,7 @@
                         {
                             <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Details</button>
                         }*@
-                    @if (review.ApplicationUser.UserName == User.Identity.GetUserName())
+                    @if (review.ApplicationUser.UserName == User.Identity.GetUserName() && ViewBag.Competition.EndDate > DateTime.Now)
                     {
                         using (Html.BeginForm(actionName: "Edit", controllerName: "PhotoReview", method: FormMethod.Get, routeValues: new { id = review.PhotoReviewId }))
                         {

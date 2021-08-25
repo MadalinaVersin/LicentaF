@@ -22,17 +22,12 @@ namespace ForAnimalsApplication.Controllers
         [HttpGet]
         public ActionResult New(int? id)
         {
-            if (IsUserReview((int)id, User.Identity.GetUserId()) == false)
-            { 
+          
                 PhotoReview review = new PhotoReview();
                 review.NoteList = GetAllNotes();
                 review.PhotoCompetitorId = (int)id;
                 return View(review);
-            }
-            else
-            {
-                return RedirectToAction("Details", "PhotoCompetitor", new { id = id });
-            }
+            
         }
 
         [HttpPost]
@@ -46,10 +41,6 @@ namespace ForAnimalsApplication.Controllers
                 {
                     reviewReq.ApplicationUserID = User.Identity.GetUserId();
                     db.PhotoReviews.Add(reviewReq);
-                    db.SaveChanges();
-
-                    PhotoCompetitor competitor = db.PhotoCompetitors.Find(reviewReq.PhotoCompetitorId);
-                    competitor.FinalNote = CalculateFinalNote(reviewReq.PhotoCompetitorId);
                     db.SaveChanges();
                     return RedirectToAction("Details", "PhotoCompetitor", new { id = reviewReq.PhotoCompetitorId });
                 }
@@ -89,11 +80,11 @@ namespace ForAnimalsApplication.Controllers
 
                 if (review == null)
                 {
-                    return HttpNotFound("Couldn't find the review with id " + id.ToString() + "!");
+                    return HttpNotFound("Nu se poate gasi recenzia cu id-ul " + id.ToString() + "!");
                 }
                 return View(review);
             }
-            return HttpNotFound("Couldn't find the review with id " + id.ToString() + "!");
+            return HttpNotFound("Id-ul recenziei lipseste!");
         }
 
         [HttpPut]
@@ -112,17 +103,12 @@ namespace ForAnimalsApplication.Controllers
                         review.Note = reviewReq.Note;
                         review.ReviewDate = DateTime.Now;
                         db.SaveChanges();
-
-                        PhotoCompetitor competitor = db.PhotoCompetitors.Find(reviewReq.PhotoCompetitorId);
-                        competitor.FinalNote = CalculateFinalNote(reviewReq.PhotoCompetitorId);
-                        db.SaveChanges();
-                        return RedirectToAction("Details", "PhotoCompetitor", new { id = competitor.PhotoCompetitorId });
                     }
-                    return RedirectToAction("Details", "PhotoCompetitor", new { id = review.PhotoCompetitor.PhotoCompetitorId });
+                    return RedirectToAction("Details", "PhotoCompetitor", new { id = review.PhotoCompetitorId });
                 }
                 return View(reviewReq);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return View(reviewReq);
             }
@@ -139,10 +125,7 @@ namespace ForAnimalsApplication.Controllers
                 {
                     db.PhotoReviews.Remove(review);
                     db.SaveChanges();
-                    PhotoCompetitor competitor = db.PhotoCompetitors.Find(review.PhotoCompetitorId);
-                    competitor.FinalNote = CalculateFinalNote(review.PhotoCompetitorId);
-                    db.SaveChanges();
-                    return RedirectToAction("Details", "PhotoCompetitor", new { id = competitor.PhotoCompetitorId });
+                    return RedirectToAction("Details", "PhotoCompetitor", new { id = review.PhotoCompetitorId });
                 }
                 return HttpNotFound("Nu se poate gasi comentariul cu id-ul:" + id.ToString() + "!");
             }
@@ -164,41 +147,6 @@ namespace ForAnimalsApplication.Controllers
                 });
             }
             return selectList;
-        }
-
-        public double CalculateFinalNote(int competitorId)
-        {
-            List<PhotoReview> reviews = db.PhotoReviews.Where(a => a.PhotoCompetitorId == competitorId).ToList();
-            PhotoCompetitor competitor = db.PhotoCompetitors.Find(competitorId);
-            double sum = 0;
-            for (var i = 0; i < reviews.Count; i++)
-            {
-                sum = sum + reviews[i].Note;
-            }
-            if (reviews.Count != 0)
-            {
-                sum = sum / reviews.Count;
-            }
-            sum = sum + competitor.JuryNote;
-            sum = sum / 2;
-            return sum;
-
-
-        }
-
-        public Boolean IsUserReview(int competitorId, string userId)
-        {
-            var userReview = db.PhotoReviews.ToList().Where(u => u.PhotoCompetitorId == competitorId && u.ApplicationUserID == userId);
-            PhotoCompetitor competitor = db.PhotoCompetitors.Find(competitorId);
-            if (userReview.Count() == 0 && competitor.ApplicationUserID != User.Identity.GetUserId())
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
         }
     }
 }

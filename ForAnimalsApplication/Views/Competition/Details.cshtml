@@ -119,24 +119,26 @@ else
                         <div class="panel-body">
 
                             <h3>@competitor.Name</h3>
-                            <img src="@Url.Content(competitor.ImagePath)" alt="Sample Image" width="300" height="350" />
-                            <br />
-                            @using (Html.BeginForm(actionName: "Details", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.PhotoCompetitorId }))
-                            {
-                                <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Detalii</button>
-                            }
-                            @if (competitor.ApplicationUser.UserName == User.Identity.GetUserName())
-                            {
-                                using (Html.BeginForm(actionName: "Edit", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.PhotoCompetitorId }))
+                            <img src="@Url.Content(competitor.ImagePath)" alt="Sample Image" width="300" height="250" />
+                            <div style="margin-top:5px;">
+                                @using (Html.BeginForm(actionName: "Details", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.PhotoCompetitorId }))
                                 {
-                                    <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Editeaza</button>
+                                    <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Detalii</button>
                                 }
-                                using (Html.BeginForm(actionName: "Delete", controllerName: "PhotoCompetitor", method: FormMethod.Post, routeValues: new { id = competitor.PhotoCompetitorId }))
+                                @if (competitor.ApplicationUser.UserName == User.Identity.GetUserName() && Model.EndDate > DateTime.Now)
                                 {
-                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
-                                    <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Sterge</button>
+                                    using (Html.BeginForm(actionName: "Edit", controllerName: "PhotoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.PhotoCompetitorId }))
+                                    {
+                                        <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Editeaza</button>
+                                    }
+                                    using (Html.BeginForm(actionName: "Delete", controllerName: "PhotoCompetitor", method: FormMethod.Post, routeValues: new { id = competitor.PhotoCompetitorId }))
+                                    {
+                                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                        <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Sterge</button>
+                                    }
                                 }
-                            }
+                                
+                            </div>
 
                         </div>
                     </div>
@@ -163,7 +165,7 @@ else
                             {
                                 <button style="margin-right:5px" class="btn btn-primary col-lg-3" type="submit">Detalii</button>
                             }
-                            @if (competitor.ApplicationUser.UserName == User.Identity.GetUserName())
+                            @if (competitor.ApplicationUser.UserName == User.Identity.GetUserName() && Model.EndDate > DateTime.Now)
                             {
                                 using (Html.BeginForm(actionName: "Edit", controllerName: "VideoCompetitor", method: FormMethod.Get, routeValues: new { id = competitor.VideoCompetitorId }))
                                 {
