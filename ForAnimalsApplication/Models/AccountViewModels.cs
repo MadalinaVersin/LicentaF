@@ -64,13 +64,13 @@ namespace ForAnimalsApplication.Models
 
     public class RegisterViewModel
     {
-        [Required(ErrorMessage ="Introduceti prenumele!")]
+        [Required(ErrorMessage ="Este obligatoriu sa introduceti prenumele!")]
         public string FirstName { get; set; }
         
-        [Required(ErrorMessage = "Introduceti numele!")]
+        [Required(ErrorMessage = "Este obligatoriu sa introduceti numele!")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage ="Numarul de telefon este obligatoriu!")]
+        [Required(ErrorMessage = "Este obligatoriu sa introduceti numarul de telefon!")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Numarul nu este valid!")]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
@@ -78,7 +78,7 @@ namespace ForAnimalsApplication.Models
 
         public string Address { get; set; }
 
-        [Required(ErrorMessage = "Adresa de Email este obligatorie!")]
+        [Required(ErrorMessage = "Este obligatoriu sa introduceti adresa de email!")]
         [EmailAddress(ErrorMessage ="Adresa nu este valida!")]
         [Display(Name = "Email")]
         public string Email { get; set; }

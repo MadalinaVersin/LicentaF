@@ -160,8 +160,8 @@ namespace ForAnimalsApplication.Controllers
                     }
                 }
             }
-            chartData.Add(new object[] { "Competitii Pierdute", lostCompetitionNumber });
-            chartData.Add(new object[] { "Competitii Catigate", wonCompetitionNumber });
+            chartData.Add(new object[] { "Competitii pierdute", lostCompetitionNumber });
+            chartData.Add(new object[] { "Competitii castigate", wonCompetitionNumber });
             return Json(chartData, JsonRequestBehavior.AllowGet);
 
 

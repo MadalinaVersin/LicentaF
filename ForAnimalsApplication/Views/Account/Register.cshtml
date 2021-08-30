@@ -13,114 +13,116 @@
                     <div class="col-md-8 mx-auto">
                         <div class="card">
                             <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <center>
-                                                <img width="100px" src="~/Content/Image/user-1648810-1401302.png" />
-                                            </center>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <center>
-                                                <h4>Inregistrare Utilizator</h4>
-                                            </center>
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
+                                <div class="row">
+                                    <div class="col">
                                         <center>
-
-                                            <hr>
-
+                                            <img width="100px" src="~/Content/Image/user-1648810-1401302.png" />
                                         </center>
                                     </div>
-                                    <div class="row">
+                                </div>
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="row">
+                                    <div class="col">
                                         <center>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Nume</label>
-                                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(m=> m.LastName, "", new { @class = "text-danger" })
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Prenume</label>
-                                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-
-                                                </div>
-                                            </div>
+                                            <h4>Inregistrare Utilizator</h4>
                                         </center>
 
                                     </div>
-                                    <div class="row">
-                                        <center>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Email</label>
-                                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="row">
+                                    <center>
 
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Telefon</label>
-                                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                                        <hr>
 
-                                                </div>
-                                            </div>
-                                        </center>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <center>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Parola</label>
-                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Confirma parola</label>
-                                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </center>
-
-                                    </div>
-
-
-
-                                    <div class="row">
-                                        <center>
+                                    </center>
+                                </div>
+                                <div class="row">
+                                    <center>
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <div class="col">
-                                                    <label>Adresa</label>
-                                                    @Html.TextAreaFor(m => m.Address, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
-                                                </div>
+                                                <label>Nume</label>
+                                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+
                                             </div>
-                                        </center>
-                                    </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Prenume</label>
+                                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
 
-                                    <div class="form-group">
-                                        <center>
-                                            <button type="submit" class="btn btn-success">Inregistreaza</button>
-                                        </center>
+                                            </div>
+                                        </div>
+                                    </center>
 
-                                    </div>
-                              
+                                </div>
+                                <div class="row">
+                                    <center>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Telefon</label>
+                                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                    </center>
+
+                                </div>
+
+                                <div class="row">
+                                    <center>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Parola</label>
+                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Confirma parola</label>
+                                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </center>
+
+                                </div>
+
+
+
+                                <div class="row">
+                                    <center>
+                                        <div class="form-group">
+                                            <div class="col">
+                                                <label>Adresa</label>
+                                                @Html.TextAreaFor(m => m.Address, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>
+
+                                <div class="form-group">
+                                    <center>
+                                        <button type="submit" class="btn btn-success">Inregistreaza</button>
+                                    </center>
+
+                                </div>
+
                             </div>
 
 
